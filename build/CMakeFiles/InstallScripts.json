@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/masonjohnson/Projects/Cpp/MPC/build/cmake_install.cmake",
+		"/Users/masonjohnson/Projects/Cpp/MPC/build/3rdparty/libremidi/cmake_install.cmake",
+		"/Users/masonjohnson/Projects/Cpp/MPC/build/_deps/readerwriterqueue-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

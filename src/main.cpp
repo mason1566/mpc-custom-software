@@ -31,12 +31,21 @@ int main() {
 	    std::cout << code << std::endl;
     };
 
-    // create the midi object
+    // create the midi in object
     libremidi::midi_in midi_in { 
 	libremidi::input_configuration{ .on_message = my_callback }
     };
 
-    midi_in.open_port(inputPorts[0]);
+    midi_in.open_port(inputPorts[0]); // set midi in port to MPC Public Port
+	
+    // create the midi out object
+    libremidi::midi_out midi_out;
+
+    midi_out.open_port(outputPorts[0]);
+
+    unsigned char bytes[12] = { 0xF0, 0x47, 0x47, 0x4A, 0x65, 0x00, 0x04, 0x00, 0x7F, 0x00, 0x00, 0xF7 };
+
+    midi_out.send_message(bytes, sizeof(bytes));
 
     // wait for midi input
     while (true) {}

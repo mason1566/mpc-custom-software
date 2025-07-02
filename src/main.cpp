@@ -4,18 +4,55 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <random>
+#include <functional>
 
-std::string bytesToHex(const std::vector<unsigned char>& bytes) {
+class DrumPad 
+{
+public:
+    unsigned char id; // the drumpad id number
+    unsigned char code; // the code sent from mpc device corresponding to this drumpad
+    unsigned int padMultiplier = 0; // 0 = off, 1 = on.
+    libremidi::midi_out &midi_out;
+
+    DrumPad(unsigned char id, libremidi::midi_out &midi_out) : id {id}, midi_out {midi_out} {}
+    DrumPad(int id, libremidi::midi_out &midi_out) : id {(unsigned char) id}, midi_out {midi_out} {}
+
+    void setPadLed(float redPercent, float greenPercent, float bluePercent) {
+        // normalize values
+        redPercent =    (redPercent > 1) ? 1 : redPercent;
+        greenPercent =  (greenPercent > 1) ? 1 : greenPercent;
+        bluePercent =   (bluePercent > 1) ? 1 : bluePercent;
+
+        redPercent =    (redPercent < 0) ? 0 : redPercent;
+        greenPercent =  (greenPercent < 0) ? 0 : greenPercent;
+        bluePercent =   (bluePercent < 0) ? 0 : bluePercent;
+
+        unsigned char red = 0x7F, green = 0x7F, blue = 0x7F;
+
+        red *= redPercent;
+        green *= greenPercent;
+        blue *= bluePercent;
+
+        unsigned char bytes[12] = { 0xF0, 0x47, 0x47, 0x4A, 0x65, 0x00, 0x04, id, red, green, blue, 0xF7 };
+
+        midi_out.send_message(bytes, sizeof(bytes));
+    }
+};
+
+std::string bytesToHex(const std::vector<unsigned char> &bytes) 
+{
     std::stringstream ss;
-    ss << std::hex << std::setfill('0'); // Set output to hexadecimal and pad with '0'
+    ss << std::hex << std::setfill('0'); // pad hex with 0s
+
     for (unsigned char byte : bytes) {
-	ss << std::setw(2) << static_cast<int>(byte); // Each byte is 2 hex digits
+        ss << std::setw(2) << static_cast<int>(byte);
     }
     return ss.str();
 }
 
-int main() {
-    
+int main() 
+{
     libremidi::observer obs;
 
     // Get input and output ports and store them in vectors
@@ -28,7 +65,8 @@ int main() {
     // create a callback function for device output
     auto my_callback = [](const libremidi::message& message) {
 	    std::string code = bytesToHex(message.bytes); 
-	    std::cout << code << std::endl;
+        if (code[0] == '9' || code[0] == '8')
+	        std::cout << code << std::endl;
     };
 
     // create the midi in object
@@ -43,9 +81,20 @@ int main() {
 
     midi_out.open_port(outputPorts[0]);
 
-    unsigned char bytes[12] = { 0xF0, 0x47, 0x47, 0x4A, 0x65, 0x00, 0x04, 0x00, 0x7F, 0x00, 0x00, 0xF7 };
 
-    midi_out.send_message(bytes, sizeof(bytes));
+    // set up vector of 16 drumpads
+    const int drumpadCount = 16;
+
+    std::vector<DrumPad> pads{};
+
+    for (int i = 0; i < drumpadCount; i++) {
+        DrumPad pad { i, midi_out };
+        pads.push_back(pad);
+    }
+
+    for (DrumPad pad : pads) {
+        pad.setPadLed(0, 1, 1);
+    }
 
     // wait for midi input
     while (true) {}

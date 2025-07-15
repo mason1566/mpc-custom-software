@@ -6,13 +6,21 @@
 #include <iomanip>
 #include <random>
 #include <functional>
+#include <unordered_map>
+
+struct ColourRGB {
+    float redPercent = 1;
+    float greenPercent = 1;
+    float bluePercent = 1;
+};
 
 class DrumPad 
 {
 public:
     unsigned char id; // the drumpad id number
     unsigned char code; // the code sent from mpc device corresponding to this drumpad
-    unsigned int padMultiplier = 0; // 0 = off, 1 = on.
+    bool isLightOn = true;
+    ColourRGB ledColour;
     libremidi::midi_out &midi_out;
 
     DrumPad(unsigned char id, libremidi::midi_out &midi_out) : id {id}, midi_out {midi_out} {}
@@ -38,6 +46,10 @@ public:
 
         midi_out.send_message(bytes, sizeof(bytes));
     }
+
+    void toggleLight() {
+
+    }
 };
 
 std::string bytesToHex(const std::vector<unsigned char> &bytes) 
@@ -51,9 +63,35 @@ std::string bytesToHex(const std::vector<unsigned char> &bytes)
     return ss.str();
 }
 
+void setupDrumpadHashmap(std::unordered_map<unsigned char, DrumPad> &drumsMap, std::vector<DrumPad> &pads) 
+{
+    // The code used by the machine for drumpad identification is used as the key of the hashmap
+    drumsMap.insert({ 0x25, pads[0] });
+    drumsMap.insert({ 0x24, pads[1] });
+    drumsMap.insert({ 0x2a, pads[2] });
+    drumsMap.insert({ 0x52, pads[3] });
+    drumsMap.insert({ 0x28, pads[4] });
+    drumsMap.insert({ 0x26, pads[5] });
+    drumsMap.insert({ 0x2e, pads[6] });
+    drumsMap.insert({ 0x2c, pads[7] });
+    drumsMap.insert({ 0x30, pads[8] });
+    drumsMap.insert({ 0x2f, pads[9] });
+    drumsMap.insert({ 0x2d, pads[10] });
+    drumsMap.insert({ 0x2b, pads[11] });
+    drumsMap.insert({ 0x31, pads[12] });
+    drumsMap.insert({ 0x37, pads[13] });
+    drumsMap.insert({ 0x33, pads[14] });
+    drumsMap.insert({ 0x35, pads[15] });
+}
+
+
+
 int main() 
 {
-    libremidi::observer obs;
+    // Setup drumpad hashmap for responses to device input
+    std::unordered_map<unsigned char, DrumPad> drumsMap;
+
+    libremidi::observer obs; // Main libremidi observer class
 
     // Get input and output ports and store them in vectors
     std::vector<libremidi::input_port> inputPorts = obs.get_input_ports();
@@ -63,10 +101,9 @@ int main()
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 
     // create a callback function for device output
-    auto my_callback = [](const libremidi::message& message) {
-	    std::string code = bytesToHex(message.bytes); 
-        if (code[0] == '9' || code[0] == '8')
-	        std::cout << code << std::endl;
+    auto my_callback = [ drumsMap ](const libremidi::message& message) {
+	    std::string code = bytesToHex(message.bytes);
+        std::cout << code << std::endl;
     };
 
     // create the midi in object
@@ -87,15 +124,31 @@ int main()
 
     std::vector<DrumPad> pads{};
 
+    // add drumpads to vector
     for (int i = 0; i < drumpadCount; i++) {
-        DrumPad pad { i, midi_out };
+        DrumPad pad { (unsigned char) i, midi_out };
         pads.push_back(pad);
     }
 
     for (DrumPad pad : pads) {
         pad.setPadLed(0, 1, 1);
+        std::cout << pad.code << std::endl;
     }
 
-    // wait for midi input
+    // Setup the drumpad map
+    setupDrumpadHashmap(drumsMap, pads);
+
+    // int tickrate = 10000000;
+    // int64_t lastTick = midi_in.absolute_timestamp();
+
+    // // wait for midi input
+    // while (true) 
+    // {
+    //     if (midi_in.absolute_timestamp() - lastTick >= tickrate) {
+    //         tick(pads);
+    //         lastTick = midi_in.absolute_timestamp();
+    //     }
+    // }
+
     while (true) {}
 }

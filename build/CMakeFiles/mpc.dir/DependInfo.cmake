@@ -8,6 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/masonjohnson/Projects/Cpp/MPC/src/miniaudio.c" "CMakeFiles/mpc.dir/src/miniaudio.c.o" "gcc" "CMakeFiles/mpc.dir/src/miniaudio.c.o.d"
+  "/Users/masonjohnson/Projects/Cpp/MPC/src/AudioController.cpp" "CMakeFiles/mpc.dir/src/AudioController.cpp.o" "gcc" "CMakeFiles/mpc.dir/src/AudioController.cpp.o.d"
+  "/Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp" "CMakeFiles/mpc.dir/src/Input.cpp.o" "gcc" "CMakeFiles/mpc.dir/src/Input.cpp.o.d"
+  "/Users/masonjohnson/Projects/Cpp/MPC/src/MPCController.cpp" "CMakeFiles/mpc.dir/src/MPCController.cpp.o" "gcc" "CMakeFiles/mpc.dir/src/MPCController.cpp.o.d"
   "/Users/masonjohnson/Projects/Cpp/MPC/src/main.cpp" "CMakeFiles/mpc.dir/src/main.cpp.o" "gcc" "CMakeFiles/mpc.dir/src/main.cpp.o.d"
   )
 

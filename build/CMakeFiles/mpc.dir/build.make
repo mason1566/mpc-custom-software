@@ -86,19 +86,83 @@ CMakeFiles/mpc.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/mpc.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/masonjohnson/Projects/Cpp/MPC/src/main.cpp -o CMakeFiles/mpc.dir/src/main.cpp.s
 
+CMakeFiles/mpc.dir/src/MPCController.cpp.o: CMakeFiles/mpc.dir/flags.make
+CMakeFiles/mpc.dir/src/MPCController.cpp.o: /Users/masonjohnson/Projects/Cpp/MPC/src/MPCController.cpp
+CMakeFiles/mpc.dir/src/MPCController.cpp.o: CMakeFiles/mpc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/masonjohnson/Projects/Cpp/MPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/mpc.dir/src/MPCController.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mpc.dir/src/MPCController.cpp.o -MF CMakeFiles/mpc.dir/src/MPCController.cpp.o.d -o CMakeFiles/mpc.dir/src/MPCController.cpp.o -c /Users/masonjohnson/Projects/Cpp/MPC/src/MPCController.cpp
+
+CMakeFiles/mpc.dir/src/MPCController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/mpc.dir/src/MPCController.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/masonjohnson/Projects/Cpp/MPC/src/MPCController.cpp > CMakeFiles/mpc.dir/src/MPCController.cpp.i
+
+CMakeFiles/mpc.dir/src/MPCController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/mpc.dir/src/MPCController.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/masonjohnson/Projects/Cpp/MPC/src/MPCController.cpp -o CMakeFiles/mpc.dir/src/MPCController.cpp.s
+
+CMakeFiles/mpc.dir/src/miniaudio.c.o: CMakeFiles/mpc.dir/flags.make
+CMakeFiles/mpc.dir/src/miniaudio.c.o: /Users/masonjohnson/Projects/Cpp/MPC/src/miniaudio.c
+CMakeFiles/mpc.dir/src/miniaudio.c.o: CMakeFiles/mpc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/masonjohnson/Projects/Cpp/MPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/mpc.dir/src/miniaudio.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/mpc.dir/src/miniaudio.c.o -MF CMakeFiles/mpc.dir/src/miniaudio.c.o.d -o CMakeFiles/mpc.dir/src/miniaudio.c.o -c /Users/masonjohnson/Projects/Cpp/MPC/src/miniaudio.c
+
+CMakeFiles/mpc.dir/src/miniaudio.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/mpc.dir/src/miniaudio.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/masonjohnson/Projects/Cpp/MPC/src/miniaudio.c > CMakeFiles/mpc.dir/src/miniaudio.c.i
+
+CMakeFiles/mpc.dir/src/miniaudio.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/mpc.dir/src/miniaudio.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/masonjohnson/Projects/Cpp/MPC/src/miniaudio.c -o CMakeFiles/mpc.dir/src/miniaudio.c.s
+
+CMakeFiles/mpc.dir/src/AudioController.cpp.o: CMakeFiles/mpc.dir/flags.make
+CMakeFiles/mpc.dir/src/AudioController.cpp.o: /Users/masonjohnson/Projects/Cpp/MPC/src/AudioController.cpp
+CMakeFiles/mpc.dir/src/AudioController.cpp.o: CMakeFiles/mpc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/masonjohnson/Projects/Cpp/MPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/mpc.dir/src/AudioController.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mpc.dir/src/AudioController.cpp.o -MF CMakeFiles/mpc.dir/src/AudioController.cpp.o.d -o CMakeFiles/mpc.dir/src/AudioController.cpp.o -c /Users/masonjohnson/Projects/Cpp/MPC/src/AudioController.cpp
+
+CMakeFiles/mpc.dir/src/AudioController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/mpc.dir/src/AudioController.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/masonjohnson/Projects/Cpp/MPC/src/AudioController.cpp > CMakeFiles/mpc.dir/src/AudioController.cpp.i
+
+CMakeFiles/mpc.dir/src/AudioController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/mpc.dir/src/AudioController.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/masonjohnson/Projects/Cpp/MPC/src/AudioController.cpp -o CMakeFiles/mpc.dir/src/AudioController.cpp.s
+
+CMakeFiles/mpc.dir/src/Input.cpp.o: CMakeFiles/mpc.dir/flags.make
+CMakeFiles/mpc.dir/src/Input.cpp.o: /Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp
+CMakeFiles/mpc.dir/src/Input.cpp.o: CMakeFiles/mpc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/masonjohnson/Projects/Cpp/MPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/mpc.dir/src/Input.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mpc.dir/src/Input.cpp.o -MF CMakeFiles/mpc.dir/src/Input.cpp.o.d -o CMakeFiles/mpc.dir/src/Input.cpp.o -c /Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp
+
+CMakeFiles/mpc.dir/src/Input.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/mpc.dir/src/Input.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp > CMakeFiles/mpc.dir/src/Input.cpp.i
+
+CMakeFiles/mpc.dir/src/Input.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/mpc.dir/src/Input.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp -o CMakeFiles/mpc.dir/src/Input.cpp.s
+
 # Object files for target mpc
 mpc_OBJECTS = \
-"CMakeFiles/mpc.dir/src/main.cpp.o"
+"CMakeFiles/mpc.dir/src/main.cpp.o" \
+"CMakeFiles/mpc.dir/src/MPCController.cpp.o" \
+"CMakeFiles/mpc.dir/src/miniaudio.c.o" \
+"CMakeFiles/mpc.dir/src/AudioController.cpp.o" \
+"CMakeFiles/mpc.dir/src/Input.cpp.o"
 
 # External object files for target mpc
 mpc_EXTERNAL_OBJECTS =
 
 mpc: CMakeFiles/mpc.dir/src/main.cpp.o
+mpc: CMakeFiles/mpc.dir/src/MPCController.cpp.o
+mpc: CMakeFiles/mpc.dir/src/miniaudio.c.o
+mpc: CMakeFiles/mpc.dir/src/AudioController.cpp.o
+mpc: CMakeFiles/mpc.dir/src/Input.cpp.o
 mpc: CMakeFiles/mpc.dir/build.make
 mpc: 3rdparty/libremidi/liblibremidi.a
 mpc: /opt/homebrew/lib/libjack.dylib
 mpc: CMakeFiles/mpc.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/masonjohnson/Projects/Cpp/MPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable mpc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/masonjohnson/Projects/Cpp/MPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable mpc"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mpc.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

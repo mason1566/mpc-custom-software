@@ -214,6 +214,78 @@ libremidi/fast:
 	$(MAKE) $(MAKESILENT) -f 3rdparty/libremidi/CMakeFiles/libremidi.dir/build.make 3rdparty/libremidi/CMakeFiles/libremidi.dir/build
 .PHONY : libremidi/fast
 
+src/AudioController.o: src/AudioController.cpp.o
+.PHONY : src/AudioController.o
+
+# target to build an object file
+src/AudioController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/AudioController.cpp.o
+.PHONY : src/AudioController.cpp.o
+
+src/AudioController.i: src/AudioController.cpp.i
+.PHONY : src/AudioController.i
+
+# target to preprocess a source file
+src/AudioController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/AudioController.cpp.i
+.PHONY : src/AudioController.cpp.i
+
+src/AudioController.s: src/AudioController.cpp.s
+.PHONY : src/AudioController.s
+
+# target to generate assembly for a file
+src/AudioController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/AudioController.cpp.s
+.PHONY : src/AudioController.cpp.s
+
+src/Input.o: src/Input.cpp.o
+.PHONY : src/Input.o
+
+# target to build an object file
+src/Input.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/Input.cpp.o
+.PHONY : src/Input.cpp.o
+
+src/Input.i: src/Input.cpp.i
+.PHONY : src/Input.i
+
+# target to preprocess a source file
+src/Input.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/Input.cpp.i
+.PHONY : src/Input.cpp.i
+
+src/Input.s: src/Input.cpp.s
+.PHONY : src/Input.s
+
+# target to generate assembly for a file
+src/Input.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/Input.cpp.s
+.PHONY : src/Input.cpp.s
+
+src/MPCController.o: src/MPCController.cpp.o
+.PHONY : src/MPCController.o
+
+# target to build an object file
+src/MPCController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/MPCController.cpp.o
+.PHONY : src/MPCController.cpp.o
+
+src/MPCController.i: src/MPCController.cpp.i
+.PHONY : src/MPCController.i
+
+# target to preprocess a source file
+src/MPCController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/MPCController.cpp.i
+.PHONY : src/MPCController.cpp.i
+
+src/MPCController.s: src/MPCController.cpp.s
+.PHONY : src/MPCController.s
+
+# target to generate assembly for a file
+src/MPCController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/MPCController.cpp.s
+.PHONY : src/MPCController.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -238,6 +310,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/miniaudio.o: src/miniaudio.c.o
+.PHONY : src/miniaudio.o
+
+# target to build an object file
+src/miniaudio.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/miniaudio.c.o
+.PHONY : src/miniaudio.c.o
+
+src/miniaudio.i: src/miniaudio.c.i
+.PHONY : src/miniaudio.i
+
+# target to preprocess a source file
+src/miniaudio.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/miniaudio.c.i
+.PHONY : src/miniaudio.c.i
+
+src/miniaudio.s: src/miniaudio.c.s
+.PHONY : src/miniaudio.s
+
+# target to generate assembly for a file
+src/miniaudio.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc.dir/build.make CMakeFiles/mpc.dir/src/miniaudio.c.s
+.PHONY : src/miniaudio.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -255,9 +351,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... libremidi"
 	@echo "... mpc"
+	@echo "... src/AudioController.o"
+	@echo "... src/AudioController.i"
+	@echo "... src/AudioController.s"
+	@echo "... src/Input.o"
+	@echo "... src/Input.i"
+	@echo "... src/Input.s"
+	@echo "... src/MPCController.o"
+	@echo "... src/MPCController.i"
+	@echo "... src/MPCController.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/miniaudio.o"
+	@echo "... src/miniaudio.i"
+	@echo "... src/miniaudio.s"
 .PHONY : help
 
 

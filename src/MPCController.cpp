@@ -1,10 +1,11 @@
 #include "MPCController.h"
-#include <iostream>
 
 void MPCController::HandleMidiMessage(libremidi::message message) {
-    std::cout << "Midi in detected!" << std::endl;
-    audio.MakeSound();
-}
+    for (auto digit : message.bytes) {
+        std::cout << std::hex << std::setw(2) << (int)digit << " ";
+    }
+    std::cout << std::endl;
+};
 
 MPCController::MPCController() {
     auto callback = [this](libremidi::message&& message) {

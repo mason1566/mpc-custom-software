@@ -3,6 +3,8 @@
 #include "AudioController.h"
 #include "Input.cpp"
 #include <vector>
+#include <iomanip>
+#include <iostream>
 
 class MPCController {
 public:

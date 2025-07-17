@@ -1019,5 +1019,5 @@ CMakeFiles/mpc.dir/src/MPCController.cpp.o: \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/ump.hpp \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/observer_configuration.hpp \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/output_configuration.hpp \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip
+  /Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream

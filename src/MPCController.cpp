@@ -1,12 +1,8 @@
 #include "MPCController.h"
 #include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <vector>
-#include <libremidi/libremidi.hpp>
 
 void MPCController::HandleMidiMessage(libremidi::message message) {
-
+    std::cout << "Midi in detected!" << std::endl;
 }
 
 MPCController::MPCController() {
@@ -21,5 +17,10 @@ MPCController::MPCController() {
 
 void MPCController::Boot() {
 
+    // Open midi ports
+    midi_in->open_port(observer.get_input_ports()[0]);
+    midi_out.open_port(observer.get_output_ports()[0]);
+
+    while (true) {}
 };
 

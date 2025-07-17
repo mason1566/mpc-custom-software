@@ -799,7 +799,6 @@ CMakeFiles/mpc.dir/src/MPCController.cpp.o: /Users/masonjohnson/Projects/Cpp/MPC
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/initializer_list \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/inttypes.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iosfwd \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
@@ -1027,6 +1026,7 @@ CMakeFiles/mpc.dir/src/MPCController.cpp.o: /Users/masonjohnson/Projects/Cpp/MPC
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/output_configuration.hpp \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/system_error2.hpp \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/ump.hpp \
+  /Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp \
   /Users/masonjohnson/Projects/Cpp/MPC/src/MPCController.h
 
 CMakeFiles/mpc.dir/src/main.cpp.o: /Users/masonjohnson/Projects/Cpp/MPC/src/main.cpp \
@@ -1824,7 +1824,6 @@ CMakeFiles/mpc.dir/src/main.cpp.o: /Users/masonjohnson/Projects/Cpp/MPC/src/main
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iosfwd \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/limits \
@@ -2049,7 +2048,8 @@ CMakeFiles/mpc.dir/src/main.cpp.o: /Users/masonjohnson/Projects/Cpp/MPC/src/main
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/output_configuration.hpp \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/system_error2.hpp \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/ump.hpp \
-  /Users/masonjohnson/Projects/Cpp/MPC/src/miniaudio.h
+  /Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp \
+  /Users/masonjohnson/Projects/Cpp/MPC/src/MPCController.h
 
 CMakeFiles/mpc.dir/src/miniaudio.c.o: /Users/masonjohnson/Projects/Cpp/MPC/src/miniaudio.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AudioToolbox.framework/Headers/AUAudioUnit.h \
@@ -2857,20 +2857,6 @@ CMakeFiles/mpc.dir/src/miniaudio.c.o: /Users/masonjohnson/Projects/Cpp/MPC/src/m
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iosfwd:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stddef.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ios:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CFDateFormatter.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_ino_t.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/copy.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/ranges_mismatch.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/inttypes.h:
@@ -3444,6 +3430,10 @@ CMakeFiles/mpc.dir/src/miniaudio.c.o: /Users/masonjohnson/Projects/Cpp/MPC/src/m
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/functional.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/insert_iterator.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stddef.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ios:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/incrementable_traits.h:
 
@@ -4162,6 +4152,14 @@ CMakeFiles/mpc.dir/src/miniaudio.c.o: /Users/masonjohnson/Projects/Cpp/MPC/src/m
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CFStream.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/ranges_for_each_n.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CFDateFormatter.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_ino_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/copy.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/ranges_mismatch.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/predicate.h:
 

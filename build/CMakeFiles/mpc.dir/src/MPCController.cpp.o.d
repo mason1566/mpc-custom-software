@@ -1021,6 +1021,7 @@ CMakeFiles/mpc.dir/src/MPCController.cpp.o: \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/output_configuration.hpp \
   /Users/masonjohnson/Projects/Cpp/MPC/src/AudioController.h \
   /Users/masonjohnson/Projects/Cpp/MPC/src/miniaudio.h \
-  /Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp \
+  /Users/masonjohnson/Projects/Cpp/MPC/src/Input.h \
+  /Users/masonjohnson/Projects/Cpp/MPC/src/Utility.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream

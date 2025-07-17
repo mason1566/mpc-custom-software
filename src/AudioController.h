@@ -1,4 +1,6 @@
-#pragma once
+#ifndef AUDIO_CONTROLLER
+#define AUDIO_CONTROLLER
+
 #include "miniaudio.h"
 
 class AudioController {
@@ -11,3 +13,4 @@ protected:
     ma_result result;
     ma_engine engine;
 };
+#endif

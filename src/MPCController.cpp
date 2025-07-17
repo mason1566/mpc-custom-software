@@ -6,8 +6,8 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
     // }
     // std::cout << std::endl;
 
-    // int input_id = message.bytes[1];
-    
+    int inputCode = message.bytes[1];
+    std::cout << input_map[inputCode]->idCode << std::endl;
 };
 
 MPCController::MPCController() {
@@ -22,7 +22,8 @@ MPCController::MPCController() {
     // Add a drumpad object for each preset drumpad id code
     for (int id_code : MPC_CONSTANTS::DRUMPAD_IDENTIFIERS) {
         DrumPad drumpad { id_code };
-        input_map.emplace(id_code, drumpad);
+        drumpads.push_back(drumpad);
+        input_map[id_code] = (Input*) &drumpads.back();
     }
 };
 

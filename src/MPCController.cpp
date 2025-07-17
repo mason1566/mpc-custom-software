@@ -1,10 +1,13 @@
 #include "MPCController.h"
 
 void MPCController::HandleMidiMessage(libremidi::message message) {
-    for (auto digit : message.bytes) {
-        std::cout << std::hex << std::setw(2) << (int)digit << "(" << std::dec << (int)digit << ")" << " ";
-    }
-    std::cout << std::endl;
+    // for (auto digit : message.bytes) {
+    //     std::cout << std::hex << std::setw(2) << (int)digit << "(" << std::dec << (int)digit << ")" << " ";
+    // }
+    // std::cout << std::endl;
+
+    // int input_id = message.bytes[1];
+    
 };
 
 MPCController::MPCController() {

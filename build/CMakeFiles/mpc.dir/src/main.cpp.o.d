@@ -1019,4 +1019,6 @@ CMakeFiles/mpc.dir/src/main.cpp.o: \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/ump.hpp \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/observer_configuration.hpp \
   /Users/masonjohnson/Projects/Cpp/MPC/3rdparty/libremidi/include/libremidi/output_configuration.hpp \
+  /Users/masonjohnson/Projects/Cpp/MPC/src/AudioController.h \
+  /Users/masonjohnson/Projects/Cpp/MPC/src/miniaudio.h \
   /Users/masonjohnson/Projects/Cpp/MPC/src/Input.cpp

@@ -3,6 +3,7 @@
 
 void MPCController::HandleMidiMessage(libremidi::message message) {
     std::cout << "Midi in detected!" << std::endl;
+    audio.MakeSound();
 }
 
 MPCController::MPCController() {

@@ -1,5 +1,6 @@
 #pragma once
 #include <libremidi/libremidi.hpp>
+#include "AudioController.h"
 #include "Input.cpp"
 #include <vector>
 
@@ -10,6 +11,7 @@ public:
     libremidi::midi_out midi_out;
     std::vector<Button> buttons;
     std::vector<DrumPad> drumpads;
+    AudioController audio;
 
     MPCController();
     void Boot();

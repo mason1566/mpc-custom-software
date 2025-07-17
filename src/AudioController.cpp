@@ -1,16 +1,16 @@
 #include "AudioController.h"
-// #include "miniaudio.c"
 
-void MakeSound() {
-    // ma_result result;
-    // ma_engine engine;
+AudioController::AudioController() {
+    result = ma_engine_init(NULL, &engine);
+    if (result != MA_SUCCESS) {
+        return;
+    }
+}
 
-    // result = ma_engine_init(NULL, &engine);
-    // if (result != MA_SUCCESS) {
-    //     return;
-    // }
+AudioController::~AudioController() {
+    ma_engine_uninit(&engine);
+}
 
-    // ma_engine_play_sound(&engine, "../src/sounds/Blood Snare.wav", NULL);
-
-    // ma_engine_uninit(&engine);
+void AudioController::MakeSound() {
+    ma_engine_play_sound(&engine, "../src/sounds/Blood Snare.wav", NULL);
 };

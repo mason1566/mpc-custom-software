@@ -18,6 +18,12 @@ MPCController::MPCController() {
     midi_in = std::make_unique<libremidi::midi_in>(
         libremidi::input_configuration{ .on_message = callback }
     );
+
+    // Add a drumpad object for each preset drumpad id code
+    for (int id_code : MPC_CONSTANTS::DRUMPAD_IDENTIFIERS) {
+        DrumPad drumpad { id_code };
+        input_map.emplace(id_code, drumpad);
+    }
 };
 
 void MPCController::Boot() {

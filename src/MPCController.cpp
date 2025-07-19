@@ -28,8 +28,13 @@ void MPCController::Boot() {
     midi_in->open_port(observer.get_input_ports()[0]);
     midi_out.open_port(observer.get_output_ports()[0]);
 
+    // Set initial colour of drumpads
+    float percent = 0;
+    float step = 1.0 / 16.0; 
     for (DrumPad pad : drumpads) {
-        SetPadRGB(&pad, RGB::WHITE);
+        int fade = 127 * percent;
+        SetPadRGB(&pad, RGB(127, fade, fade));
+        percent += step;
     }
 
     while (true) {}

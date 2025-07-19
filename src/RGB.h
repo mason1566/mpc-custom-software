@@ -25,6 +25,9 @@ public:
     // COLOUR CONSTANTS
     static RGB BLACK;
     static RGB WHITE;
+    static RGB RED;
+    static RGB GREEN;
+    static RGB BLUE;
 
 protected:
     int _red, _green, _blue;

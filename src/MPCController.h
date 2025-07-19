@@ -15,14 +15,14 @@
 // Singleton
 class MPCController {
 public:
-    MidiController* midi = MidiController::Instance();
+    MidiController* midi;
     std::vector<Button> buttons;
     std::vector<DrumPad> drumpads;
     AudioController audio;
     std::unordered_map<int, Input*> input_map;
 
     void Boot();
-    void SetPadRGB(DrumPad* pad, RGB colour);
+    void SetPadRGB(DrumPad* pad, RGB colour) { pad->setLightColour(colour); };
 
     // Singleton Instance function. This is the accessor to the shared MPCController instance
     static MPCController* Instance();

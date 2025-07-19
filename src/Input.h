@@ -2,6 +2,7 @@
 #define INPUT
 
 #include "RGB.h"
+#include "MidiController.h"
 
 class Input {
 public:
@@ -21,7 +22,7 @@ public:
     bool isLightOn;
 
     DrumPad(int id, int padNum) : Input(id), padNumber {padNum} {};;
-    void setLightColour(RGB colour) { _lightColour = colour; };
+    void setLightColour(RGB colour);
     RGB getLightColour() { return _lightColour; };
 protected:
     RGB _lightColour { RGB::WHITE };

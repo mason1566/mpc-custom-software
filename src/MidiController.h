@@ -2,11 +2,15 @@
 #define MIDI_CONTROLLER
 
 #include <libremidi/libremidi.hpp>
+#include "RGB.h"
 
 // Singleton
 class MidiController {
 public:
     static MidiController* Instance();
+
+    void sendMessage(unsigned char bytes[], size_t size) { midi_out.send_message(bytes, size); };
+    void SetPadRGB(int padNumber, RGB colour);
 protected:
     static MidiController* _instance;
     

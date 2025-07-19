@@ -27,10 +27,8 @@ MidiController::MidiController() {
 }
 
 void MidiController::HandleMidiMessage(libremidi::message message) {
-    // for (auto byte : message.bytes) {
-    //     std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
-    // }
-    // std::cout << std::endl;
+    if (midiCallbackFunction)
+        midiCallbackFunction(message);
 }
 
 void MidiController::SetPadRGB(int padNumber, RGB colour) {

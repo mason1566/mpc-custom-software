@@ -1,6 +1,8 @@
 #ifndef MPC_CONTROLLER
 #define MPC_CONTROLLER
 
+#include <libremidi/libremidi.hpp>
+
 #include "MidiController.h"
 #include "AudioController.h"
 #include "Input.h"
@@ -11,6 +13,7 @@
 #include <iomanip>
 #include <iostream>
 #include <unordered_map>
+#include <functional>
 
 // Singleton
 class MPCController {
@@ -29,6 +32,8 @@ public:
 protected:
     // Protected constructor for singleton pattern
     MPCController();
+
+    void MidiCallback(libremidi::message message);
 
     // Common MPCController Instance variable
     static MPCController* _instance;

@@ -12,6 +12,8 @@ MPCController* MPCController::Instance() {
 /* CONSTRUCTOR */
 MPCController::MPCController() {
     midi = MidiController::Instance();
+    std::function<void (libremidi::message message)> callback = [this](libremidi::message message) { this->MidiCallback(message); };
+    midi->setCallbackFunction(callback);
 
     // Add a drumpad object for each preset drumpad id code
     int padNumber = 0;
@@ -42,3 +44,10 @@ void MPCController::Boot() {
 // void MPCController::HandleMidiMessage(libremidi::message message) {
 
 // };
+
+void MPCController::MidiCallback(libremidi::message message) {
+    for (auto byte : message.bytes) {
+        std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
+    }
+    std::cout << std::endl;
+}

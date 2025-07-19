@@ -23,7 +23,7 @@ public:
     std::vector<DrumPad> drumpads;
     AudioController audio;
     // std::unordered_map<int, Input*> input_map;
-    // std::unordered_map<int, DrumPad*> drum_map;
+    std::unordered_map<int, DrumPad*> drum_map;
 
     void Boot();
     void HandleMidiMessage(libremidi::message message);

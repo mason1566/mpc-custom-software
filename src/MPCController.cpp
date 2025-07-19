@@ -56,15 +56,6 @@ void MPCController::setupDrumPads() {
     drumpads.push_back(DrumPad { 51, 14});
     drumpads.push_back(DrumPad { 53, 15});
 
-}
-
-/* MEMBER FUNCTIONS */
-void MPCController::Boot() {
-
-    // Open midi ports
-    midi_in->open_port(observer.get_input_ports()[0]);
-    midi_out.open_port(observer.get_output_ports()[0]);
-
     // Set initial colour of drumpads
     float percent = 0;
     float step = 1.0 / 16.0; 
@@ -73,6 +64,19 @@ void MPCController::Boot() {
         SetPadRGB(&pad, RGB(127, fade, fade));
         percent += step;
     }
+
+    // Add drumpads to the drum_map
+    for (int i = 0; i < drumpads.size(); i++) {
+        drum_map[drumpads[i].midiCode] = &(drumpads[i]);
+    }
+}
+
+/* MEMBER FUNCTIONS */
+void MPCController::Boot() {
+
+    // Open midi ports
+    midi_in->open_port(observer.get_input_ports()[0]);
+    midi_out.open_port(observer.get_output_ports()[0]);
 
     while (true) {}
 };
@@ -84,13 +88,15 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
     // std::cout << std::endl;
 
     if ((int)message.bytes[0] == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
-        // int inputCode = (int)message.bytes[1];
-        // Input input = *input_map[inputCode];
-        // DrumPad* drumpad = dynamic_cast<DrumPad*>(drumpad);
+        int midiCode = (int)message.bytes[1];
+        std::cout << midiCode << std::endl;
+        DrumPad* drumpad = drum_map[midiCode];
 
-        // if (drumpad) {
-
-        // }
+        if (drumpad) {
+            std::cout << drumpad->midiCode << " " << drumpad->padNumber << std::endl;
+            drumpad->toggleLight();
+            SetPadRGB(drumpad, drumpad->getLightColour());
+        }
     }
 
     // int inputCode = message.bytes[1];
@@ -98,9 +104,7 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
 };
 
 void MPCController::SetPadRGB(DrumPad* pad, RGB colour) {
-    pad->setLightColour(colour);
-
-    std::cout << pad->midiCode << " " << pad->padNumber << std::endl;
+    // std::cout << pad->midiCode << " " << pad->padNumber << std::endl;
 
     // Midi sysex message format for controlling drumpad LED values is as follows:
     // { 

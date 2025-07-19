@@ -3,6 +3,6 @@ project (mpc)
 
 add_subdirectory(3rdparty/libremidi)
 
-add_executable(${PROJECT_NAME} src/main.cpp src/MPCController.cpp src/miniaudio.c src/AudioController.cpp src/Input.cpp src/Utility.cpp src/RGB.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/MPC.cpp src/miniaudio.c src/AudioController.cpp src/Input.cpp src/Utility.cpp src/RGB.cpp)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE libremidi)

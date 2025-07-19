@@ -14,7 +14,7 @@
 #include <unordered_map>
 
 // Singleton
-class MPCController {
+class MPC {
 public:
     libremidi::observer observer;
     std::unique_ptr<libremidi::midi_in> midi_in;
@@ -31,10 +31,10 @@ public:
     void SetPadRGB(DrumPad* pad);
 
     // Singleton Instance function. This is the accessor to the shared MPCController instance
-    static MPCController* Instance();
+    static MPC* Instance();
 protected:
     // Protected constructor for singleton pattern
-    MPCController();
+    MPC();
 
     // DrumPad Member Functions
     void setupDrumPads();
@@ -43,7 +43,7 @@ protected:
 
 
     // Common MPCController Instance variable
-    static MPCController* _instance;
+    static MPC* _instance;
 };
 
 #endif

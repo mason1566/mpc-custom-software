@@ -1,16 +1,16 @@
-#include "MPCController.h"
+#include "MPC.h"
 
 /* SINGLETON INSTANCE IMPLEMENTATION */
-MPCController* MPCController::_instance = nullptr;
+MPC* MPC::_instance = nullptr;
 
-MPCController* MPCController::Instance() {
+MPC* MPC::Instance() {
     if (!_instance) 
-        _instance = new MPCController;
+        _instance = new MPC;
     return _instance;
 }
 
 /* CONSTRUCTOR */
-MPCController::MPCController() {
+MPC::MPC() {
     // Create lambda expression callback function for midi message handling
     auto callback = [this](libremidi::message&& message) {
         this->HandleMidiMessage(message);
@@ -38,7 +38,7 @@ MPCController::MPCController() {
     setupDrumPads();
 };
 
-void MPCController::setupDrumPads() {
+void MPC::setupDrumPads() {
     drumpads.push_back(DrumPad { 37, 0});
     drumpads.push_back(DrumPad { 36, 1});
     drumpads.push_back(DrumPad { 42, 2});
@@ -73,7 +73,7 @@ void MPCController::setupDrumPads() {
 }
 
 /* MEMBER FUNCTIONS */
-void MPCController::Boot() {
+void MPC::Boot() {
 
     // Open midi ports
     midi_in->open_port(observer.get_input_ports()[0]);
@@ -88,7 +88,7 @@ void MPCController::Boot() {
     while (true) {}
 };
 
-void MPCController::HandleMidiMessage(libremidi::message message) {
+void MPC::HandleMidiMessage(libremidi::message message) {
     // for (auto byte : message.bytes) {
     //     std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
     // }
@@ -113,7 +113,7 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
     // std::cout << input_map[inputCode]->idCode << std::endl;
 };
 
-void MPCController::SetPadRGB(DrumPad* pad, RGB colour) {
+void MPC::SetPadRGB(DrumPad* pad, RGB colour) {
     // pad->setLightColour(colour);
 
     // Midi sysex message format for controlling drumpad LED values is as follows:
@@ -136,7 +136,7 @@ void MPCController::SetPadRGB(DrumPad* pad, RGB colour) {
     midi_out.send_message(bytes, sizeof(bytes));
 };
 
-void MPCController::SetPadRGB(DrumPad* pad) {
+void MPC::SetPadRGB(DrumPad* pad) {
     unsigned char padNum = static_cast<unsigned char>(pad->padNumber);
     unsigned char red = static_cast<unsigned char>(pad->getLightColour().getRed());
     unsigned char green = static_cast<unsigned char>(pad->getLightColour().getGreen());
@@ -151,12 +151,12 @@ void MPCController::SetPadRGB(DrumPad* pad) {
     midi_out.send_message(bytes, sizeof(bytes));
 }
 
-void MPCController::OnDrumPadDown(DrumPad* drumpad) {
+void MPC::OnDrumPadDown(DrumPad* drumpad) {
     drumpad->setLightOn();
     SetPadRGB(drumpad, drumpad->getLightColour());
 }
 
-void MPCController::OnDrumPadUp(DrumPad* drumpad) {
+void MPC::OnDrumPadUp(DrumPad* drumpad) {
     drumpad->setLightOff();
     SetPadRGB(drumpad, drumpad->getLightColour());
 }

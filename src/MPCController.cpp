@@ -59,9 +59,10 @@ void MPCController::setupDrumPads() {
     // Set initial colour of drumpads
     float percent = 0;
     float step = 1.0 / 16.0; 
-    for (DrumPad pad : drumpads) {
+    for (int i = 0; i < drumpads.size(); i++) {
         int fade = 127 * percent;
-        SetPadRGB(&pad, RGB(127, fade, fade));
+        RGB padColour = RGB ( 127, fade, fade );
+        drumpads[i].setLightColour(padColour);
         percent += step;
     }
 
@@ -77,6 +78,11 @@ void MPCController::Boot() {
     // Open midi ports
     midi_in->open_port(observer.get_input_ports()[0]);
     midi_out.open_port(observer.get_output_ports()[0]);
+
+    // Set initial colour of drumpads
+    for (int i = 0; i < drumpads.size(); i++) {
+        SetPadRGB(&(drumpads[i]));
+    }
 
     while (true) {}
 };
@@ -104,6 +110,7 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
 };
 
 void MPCController::SetPadRGB(DrumPad* pad, RGB colour) {
+    // pad->setLightColour(colour);
     // std::cout << pad->midiCode << " " << pad->padNumber << std::endl;
 
     // Midi sysex message format for controlling drumpad LED values is as follows:
@@ -125,3 +132,17 @@ void MPCController::SetPadRGB(DrumPad* pad, RGB colour) {
     };
     midi_out.send_message(bytes, sizeof(bytes));
 };
+
+void MPCController::SetPadRGB(DrumPad* pad) {
+    unsigned char padNum = static_cast<unsigned char>(pad->padNumber);
+    unsigned char red = static_cast<unsigned char>(pad->getLightColour().getRed());
+    unsigned char green = static_cast<unsigned char>(pad->getLightColour().getGreen());
+    unsigned char blue = static_cast<unsigned char>(pad->getLightColour().getBlue());
+    // std::cout << (int)padNum << " " << (int)pad->getLightColour().getRed() << " " << (int)green << " " << (int)blue << std::endl;
+
+    unsigned char bytes[12] = { 
+        0xF0, 0x47, 0x47, 0x4A, 0x65, 0x00, 0x04, 
+        padNum, red, green, blue, 0xF7 
+    };
+    midi_out.send_message(bytes, sizeof(bytes));
+}

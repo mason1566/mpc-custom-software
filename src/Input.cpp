@@ -1,10 +1,12 @@
 #include "Input.h"
 
 RGB DrumPad::getLightColour() {
-    if (!isLightOn)
+    if (!isLightOn) {
         return RGB::BLACK;
-    else
+    }
+    else {
         return _lightColour;
+    }
 }
 
 void DrumPad::toggleLight() {

@@ -14,9 +14,9 @@ public:
     void setBlue(int blue) { _blue = normalizeColourValue(blue); };
 
     // Getters
-    int getRed() { return _red; };
-    int getGreen() { return _green; };
-    int getBlue() { return _blue; };
+    int getRed() const { return _red; };
+    int getGreen() const { return _green; };
+    int getBlue() const { return _blue; };
 
 // Static Variables
     static int MAX_VALUE;
@@ -33,7 +33,7 @@ protected:
     int _red, _green, _blue;
 
 // Protected Member Functions
-    int normalizeColourValue(int colourValue);
+    static int normalizeColourValue(int colourValue);
 };
 
 #endif

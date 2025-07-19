@@ -95,11 +95,11 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
 
     if ((int)message.bytes[0] == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
         int midiCode = (int)message.bytes[1];
-        std::cout << midiCode << std::endl;
+        // std::cout << midiCode << std::endl;
         DrumPad* drumpad = drum_map[midiCode];
 
         if (drumpad) {
-            std::cout << drumpad->midiCode << " " << drumpad->padNumber << std::endl;
+            // std::cout << drumpad->midiCode << " " << drumpad->padNumber << std::endl;
             drumpad->toggleLight();
             SetPadRGB(drumpad, drumpad->getLightColour());
         }
@@ -111,7 +111,6 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
 
 void MPCController::SetPadRGB(DrumPad* pad, RGB colour) {
     // pad->setLightColour(colour);
-    // std::cout << pad->midiCode << " " << pad->padNumber << std::endl;
 
     // Midi sysex message format for controlling drumpad LED values is as follows:
     // { 
@@ -138,6 +137,7 @@ void MPCController::SetPadRGB(DrumPad* pad) {
     unsigned char red = static_cast<unsigned char>(pad->getLightColour().getRed());
     unsigned char green = static_cast<unsigned char>(pad->getLightColour().getGreen());
     unsigned char blue = static_cast<unsigned char>(pad->getLightColour().getBlue());
+    
     // std::cout << (int)padNum << " " << (int)pad->getLightColour().getRed() << " " << (int)green << " " << (int)blue << std::endl;
 
     unsigned char bytes[12] = { 

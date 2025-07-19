@@ -32,15 +32,21 @@ void MPCController::Boot() {
 };
 
 void MPCController::HandleMidiMessage(libremidi::message message) {
-    // for (auto digit : message.bytes) {
-    //     std::cout << std::hex << std::setw(2) << (int)digit << "(" << std::dec << (int)digit << ")" << " ";
-    // }
-    // std::cout << std::endl;
+    for (auto digit : message.bytes) {
+        std::cout << std::hex << std::setw(2) << (int)digit << "(" << std::dec << (int)digit << ")" << " ";
+    }
+    std::cout << std::endl;
 
-    int inputCode = message.bytes[1];
-    std::cout << input_map[inputCode]->idCode << std::endl;
+    // int inputCode = message.bytes[1];
+    // std::cout << input_map[inputCode]->idCode << std::endl;
 };
 
 void MPCController::SetPadRGB(DrumPad* pad, RGB colour) {
-    
+    // Midi sysex message format for controlling drumpad LED values is as follows:
+    // { 
+    //      msg_start, mfg_id, dev_id, model_id, msg_type, data_length, data_length_2, 
+    //      PAD_NUM, RED_VALUE (0-127), GREEN_VALUE (0-127), BLUE_VALUE (0-127), msg_end 
+    // }
+    // We are only interested in the PAD_NUM, RED_VALUE, GREEN_VALUE, and BLUE_VALUE.
+
 };

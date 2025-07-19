@@ -3,6 +3,13 @@
 
 #include "RGB.h"
 
+// Forward declaration for MPCController
+class MPCController {
+public:
+    static MPCController* Instance();
+    void SetPadRGB(DrumPad* pad, RGB colour);
+};
+
 class Input {
 public:
     int idCode;

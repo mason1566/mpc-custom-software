@@ -11,6 +11,7 @@ MPCController* MPCController::Instance() {
 
 /* CONSTRUCTOR */
 MPCController::MPCController() {
+    // Create lambda expression callback function for midi message handling
     auto callback = [this](libremidi::message&& message) {
         this->HandleMidiMessage(message);
     };
@@ -20,15 +21,42 @@ MPCController::MPCController() {
     );
 
     // Add a drumpad object for each preset drumpad id code
-    int padNumber = 0;
+    // int padNumber = 0;
 
-    for (int id_code : MPC_CONSTANTS::DRUMPAD_IDENTIFIERS) {
-        DrumPad drumpad { id_code, padNumber };
-        drumpads.push_back(drumpad);
-        input_map[id_code] = (Input*) &drumpads.back();
-        padNumber++;
-    }
+    // for (int id_code : MPC_CONSTANTS::DRUMPAD_IDENTIFIERS) {
+    //     DrumPad drumpad { id_code, padNumber };
+    //     drumpads.push_back(drumpad);
+    //     input_map[id_code] = (Input*) &drumpads.back();
+    //     padNumber++;
+    // }
+
+    // for (int i = 0; i < MPC_CONSTANTS::DRUMPAD_COUNT; i++) {
+    //     drumpads.push_back(DrumPad{ MPC_CONSTANTS::DRUMPAD_IDENTIFIERS[i], i });
+    //     drum_map[drumpads[i].midiCode] = &drumpads[i];
+    // }
+
+    setupDrumPads();
 };
+
+void MPCController::setupDrumPads() {
+    drumpads.push_back(DrumPad { 37, 0});
+    drumpads.push_back(DrumPad { 36, 1});
+    drumpads.push_back(DrumPad { 42, 2});
+    drumpads.push_back(DrumPad { 82, 3});
+    drumpads.push_back(DrumPad { 40, 4});
+    drumpads.push_back(DrumPad { 38, 5});
+    drumpads.push_back(DrumPad { 46, 6});
+    drumpads.push_back(DrumPad { 44, 7});
+    drumpads.push_back(DrumPad { 48, 8});
+    drumpads.push_back(DrumPad { 47, 9});
+    drumpads.push_back(DrumPad { 45, 10});
+    drumpads.push_back(DrumPad { 43, 11});
+    drumpads.push_back(DrumPad { 49, 12});
+    drumpads.push_back(DrumPad { 55, 13});
+    drumpads.push_back(DrumPad { 51, 14});
+    drumpads.push_back(DrumPad { 53, 15});
+
+}
 
 /* MEMBER FUNCTIONS */
 void MPCController::Boot() {
@@ -56,13 +84,13 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
     // std::cout << std::endl;
 
     if ((int)message.bytes[0] == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
-        int inputCode = (int)message.bytes[1];
-        Input input = *input_map[inputCode];
-        DrumPad* drumpad = dynamic_cast<DrumPad*>(drumpad);
+        // int inputCode = (int)message.bytes[1];
+        // Input input = *input_map[inputCode];
+        // DrumPad* drumpad = dynamic_cast<DrumPad*>(drumpad);
 
-        if (drumpad) {
+        // if (drumpad) {
 
-        }
+        // }
     }
 
     // int inputCode = message.bytes[1];
@@ -71,6 +99,8 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
 
 void MPCController::SetPadRGB(DrumPad* pad, RGB colour) {
     pad->setLightColour(colour);
+
+    std::cout << pad->midiCode << " " << pad->padNumber << std::endl;
 
     // Midi sysex message format for controlling drumpad LED values is as follows:
     // { 

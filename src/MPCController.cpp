@@ -81,6 +81,7 @@ void MPCController::Boot() {
 
     // Set initial colour of drumpads
     for (int i = 0; i < drumpads.size(); i++) {
+        drumpads[i].setLightOff();
         SetPadRGB(&(drumpads[i]));
     }
 
@@ -93,16 +94,19 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
     // }
     // std::cout << std::endl;
 
-    if ((int)message.bytes[0] == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
-        int midiCode = (int)message.bytes[1];
-        // std::cout << midiCode << std::endl;
+    int midiSignal = (int)message.bytes[0];
+    int midiCode = (int)message.bytes[1];
+    int velocity = (int)message.bytes[2];
+
+    if (midiSignal == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
         DrumPad* drumpad = drum_map[midiCode];
 
-        if (drumpad) {
-            // std::cout << drumpad->midiCode << " " << drumpad->padNumber << std::endl;
-            drumpad->toggleLight();
-            SetPadRGB(drumpad, drumpad->getLightColour());
-        }
+        if (drumpad) OnDrumPadDown(drumpad);
+    }
+    else if ((int)message.bytes[0] == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
+        DrumPad* drumpad = drum_map[midiCode];
+
+        if (drumpad) OnDrumPadUp(drumpad);
     }
 
     // int inputCode = message.bytes[1];
@@ -145,4 +149,14 @@ void MPCController::SetPadRGB(DrumPad* pad) {
         padNum, red, green, blue, 0xF7 
     };
     midi_out.send_message(bytes, sizeof(bytes));
+}
+
+void MPCController::OnDrumPadDown(DrumPad* drumpad) {
+    drumpad->setLightOn();
+    SetPadRGB(drumpad, drumpad->getLightColour());
+}
+
+void MPCController::OnDrumPadUp(DrumPad* drumpad) {
+    drumpad->setLightOff();
+    SetPadRGB(drumpad, drumpad->getLightColour());
 }

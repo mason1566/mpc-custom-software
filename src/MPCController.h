@@ -36,7 +36,11 @@ protected:
     // Protected constructor for singleton pattern
     MPCController();
 
+    // DrumPad Member Functions
     void setupDrumPads();
+    void OnDrumPadDown(DrumPad* drumpad);
+    void OnDrumPadUp(DrumPad* drumpad);
+
 
     // Common MPCController Instance variable
     static MPCController* _instance;

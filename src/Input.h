@@ -24,6 +24,8 @@ public:
     void setLightColour(RGB colour) { _lightColour = colour; }
     RGB getLightColour();
     void toggleLight();
+    void setLightOff() { isLightOn = false; }
+    void setLightOn() { isLightOn = true; }
 protected:
     RGB _lightColour;
 };

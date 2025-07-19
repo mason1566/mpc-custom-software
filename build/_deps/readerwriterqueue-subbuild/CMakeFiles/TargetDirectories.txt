@@ -1,3 +1,0 @@
-/Users/masonjohnson/Projects/Cpp/MPC/build/_deps/readerwriterqueue-subbuild/CMakeFiles/readerwriterqueue-populate.dir
-/Users/masonjohnson/Projects/Cpp/MPC/build/_deps/readerwriterqueue-subbuild/CMakeFiles/edit_cache.dir
-/Users/masonjohnson/Projects/Cpp/MPC/build/_deps/readerwriterqueue-subbuild/CMakeFiles/rebuild_cache.dir

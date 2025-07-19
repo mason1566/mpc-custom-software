@@ -2,9 +2,12 @@
 #define MPC_CONTROLLER
 
 #include <libremidi/libremidi.hpp>
+
 #include "AudioController.h"
 #include "Input.h"
 #include "Utility.h"
+#include "RGB.h"
+
 #include <vector>
 #include <iomanip>
 #include <iostream>
@@ -23,6 +26,7 @@ public:
     MPCController();
     void Boot();
     void HandleMidiMessage(libremidi::message message);
+    void SetPadRGB(DrumPad* pad, RGB colour);
 protected:
 
 

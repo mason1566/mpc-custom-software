@@ -15,7 +15,9 @@ public:
 
 class DrumPad : Input {
 public:
-    DrumPad(int id) : Input(id) {};
+    int padNumber; // MPC signals involving drumpad use idCode for incoming and padNumber for outgoing
+
+    DrumPad(int id, int padNum) : Input(id), padNumber {padNum} {};
 };
 
 #endif

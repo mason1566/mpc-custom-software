@@ -3,13 +3,6 @@
 
 #include "RGB.h"
 
-// Forward declaration for MPCController
-class MPCController {
-public:
-    static MPCController* Instance();
-    void SetPadRGB(DrumPad* pad, RGB colour);
-};
-
 class Input {
 public:
     int idCode;
@@ -27,8 +20,9 @@ public:
     int padNumber; // MPC signals involving drumpad use idCode for incoming and padNumber for outgoing
     bool isLightOn;
 
-    DrumPad(int id, int padNum);
-    void setLightColour(RGB colour);
+    DrumPad(int id, int padNum) : Input(id), padNumber {padNum} {};;
+    void setLightColour(RGB colour) { _lightColour = colour; };
+    RGB getLightColour() { return _lightColour; };
 protected:
     RGB _lightColour { RGB::WHITE };
 };

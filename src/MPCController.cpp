@@ -42,7 +42,8 @@ void MPCController::Boot() {
     float step = 1.0 / 16.0; 
     for (DrumPad pad : drumpads) {
         int fade = 127 * percent;
-        SetPadRGB(&pad, RGB(127, fade, fade));
+        // SetPadRGB(&pad, RGB(127, fade, fade));
+        pad.setLightColour(RGB(127, fade, fade));
         percent += step;
     }
 

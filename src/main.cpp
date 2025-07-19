@@ -1,6 +1,6 @@
 #include "MPCController.h"
 
 int main() {
-    MPCController mpc;
-    mpc.Boot();
+    MPCController* mpc = MPCController::Instance();
+    mpc->Boot();
 }

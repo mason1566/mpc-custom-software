@@ -1,5 +1,14 @@
 #include "MPCController.h"
 
+/* SINGLETON INSTANCE IMPLEMENTATION */
+MPCController* MPCController::_instance = nullptr;
+
+MPCController* MPCController::Instance() {
+    if (!_instance) 
+        _instance = new MPCController;
+    return _instance;
+}
+
 /* CONSTRUCTOR */
 MPCController::MPCController() {
     auto callback = [this](libremidi::message&& message) {
@@ -41,10 +50,20 @@ void MPCController::Boot() {
 };
 
 void MPCController::HandleMidiMessage(libremidi::message message) {
-    for (auto byte : message.bytes) {
-        std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
+    // for (auto byte : message.bytes) {
+    //     std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
+    // }
+    // std::cout << std::endl;
+
+    if ((int)message.bytes[0] == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
+        int inputCode = (int)message.bytes[1];
+        Input input = *input_map[inputCode];
+        DrumPad* drumpad = dynamic_cast<DrumPad*>(drumpad);
+
+        if (drumpad) {
+
+        }
     }
-    std::cout << std::endl;
 
     // int inputCode = message.bytes[1];
     // std::cout << input_map[inputCode]->idCode << std::endl;

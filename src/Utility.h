@@ -10,5 +10,10 @@ namespace MPC_CONSTANTS {
         0x002500, 0x002400, 0x002A00, 0x005200, 0x002800, 0x002600, 0x002E00, 0x002C00,
         0x003000, 0x002F00, 0x002D00, 0x002B00, 0x003100, 0x003700, 0x003300, 0x003500 
     };
+
+    namespace MIDI_MESSAGES {
+        static int DRUMPAD_DOWN = 0x99;
+        static int DRUMPAD_UP = 0x89;
+    }
 }
 #endif

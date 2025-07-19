@@ -42,8 +42,7 @@ void MPCController::Boot() {
     float step = 1.0 / 16.0; 
     for (DrumPad pad : drumpads) {
         int fade = 127 * percent;
-        // SetPadRGB(&pad, RGB(127, fade, fade));
-        pad.setLightColour(RGB(127, fade, fade));
+        SetPadRGB(&pad, RGB(127, fade, fade));
         percent += step;
     }
 
@@ -71,6 +70,8 @@ void MPCController::HandleMidiMessage(libremidi::message message) {
 };
 
 void MPCController::SetPadRGB(DrumPad* pad, RGB colour) {
+    pad->setLightColour(colour);
+
     // Midi sysex message format for controlling drumpad LED values is as follows:
     // { 
     //      msg_start, mfg_id, dev_id, model_id, msg_type, data_length, data_length_2, 

@@ -9,8 +9,9 @@ class Input {
 public:
     int midiCode;
     std::string inputType;
+    std::string name;
     
-    Input(int midiCode, std::string inputType) : midiCode(midiCode), inputType(inputType) {}
+    Input(int midiCode, std::string inputType, std::string name) : midiCode(midiCode), inputType(inputType), name(name) {}
 };
 
 #endif

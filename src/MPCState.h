@@ -9,6 +9,7 @@ public:
     std::string name;
 
     MPCState(std::string stateName) : name(stateName) {}
+    // virtual void 
 };
 
 #endif

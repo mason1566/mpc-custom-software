@@ -14,6 +14,11 @@ namespace MPC_CONSTANTS {
         static int DRUMPAD_DOWN = 0x99;
         static int DRUMPAD_UP = 0x89;
     }
+
+    namespace INPUT_TYPES {
+        static std::string BUTTON_INPUT { "BUTTON_INPUT" };
+        static std::string DRUMPAD_INPUT { "DRUMPAD_INPUT" };
+    }
 }
 
 namespace MPC_STATES {

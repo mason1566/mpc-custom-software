@@ -5,6 +5,8 @@
 
 #include "AudioController.h"
 #include "Input.h"
+#include "DrumPad.h"
+#include "Button.h"
 #include "Utility.h"
 #include "RGB.h"
 

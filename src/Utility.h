@@ -10,6 +10,49 @@ namespace MPC_CONSTANTS {
     static int DRUMPAD_COUNT = 16;
     static int DRUMPAD_MIDI_VALUES[] { 37, 36, 42, 82, 40, 38, 46, 44, 48, 47, 45, 43, 49, 55, 51, 53 };
 
+    namespace BUTTON_MIDI_VALUES {
+        static int TOUCH_STRIP_BUTTON = 0;
+        static int PAD_MUTE = 4;
+        static int ERASE = 9;
+        static int NOTE_REPEAT = 11;
+        static int QUANTIZE = 12;
+        static int TRACK_SELECT = 13;
+        static int PROGRAM_SELECT = 14;
+        static int TC_ON_OFF = 15;
+        static int SAMPLE_START = 33;
+        static int SAMPLE_END = 34;
+        static int PAD_BANK_AE = 35;
+        static int PAD_BANK_BF = 36;
+        static int PAD_BANK_CG = 37;
+        static int PAD_BANK_DH = 38;
+        static int FULL_LEVEL = 39;
+        static int SIXTEEN_LEVEL = 40;
+        static int SAMPLE_SELECT = 42;
+        static int SHIFT = 49;
+        static int BROWSE = 50;
+        static int MAIN = 52;
+        static int TAP_TEMP = 53;
+        static int PLUS = 54;
+        static int MINUS = 55;
+        static int ZOOM = 66;
+        static int UNDO = 67;
+        static int LEFT = 68;
+        static int RIGHT = 69;
+        static int LOCATE = 70;
+        static int LEFT_LEFT = 71;
+        static int RIGHT_RIGHT = 72;
+        static int RECORD = 73;
+        static int AUTOMATION_READ_WRITE = 75;
+        static int TUNE = 79;
+        static int OVERDUB = 80;
+        static int STOP = 81;
+        static int PLAY = 82;
+        static int PLAY_START = 83;
+        static int JOG_WHEEL = 111;
+        static int MODE = 114;
+        static int COPY = 122;
+    }
+
     namespace MIDI_MESSAGES {
         // OUTPUT
         static unsigned char MIDI_CONTROL_CHANGE = 0xB0;

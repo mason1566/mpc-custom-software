@@ -16,6 +16,10 @@ MPC::MPC() {
     midiCallback = [this](libremidi::message message) { HandleMidiMessage(message); };
     midi->setMidiCallbackFunction(midiCallback);
     setupDrumPads();
+
+    // Turn on Pad Mute Button light
+    // unsigned char message[] { MPC_CONSTANTS::MIDI_MESSAGES::MIDI_CONTROL_CHANGE, 4, 3 };
+    // midi->midi_out.send_message(message, sizeof(message));
 };
 
 void MPC::setupDrumPads() {
@@ -42,6 +46,10 @@ void MPC::setupDrumPads() {
 
 /* MEMBER FUNCTIONS */
 void MPC::Boot() {
+
+    // Open midi ports
+
+
     // Set initial colour of drumpads
     for (int i = 0; i < drumpads.size(); i++) {
         drumpads[i].setLightOff();
@@ -71,9 +79,14 @@ void MPC::HandleMidiMessage(libremidi::message message) {
 
         if (drumpad) OnDrumPadUp(drumpad);
     }
+
+    // int inputCode = message.bytes[1];
+    // std::cout << input_map[inputCode]->idCode << std::endl;
 };
 
 void MPC::SetPadRGB(DrumPad* pad, RGB colour) {
+    // pad->setLightColour(colour);
+
     // Midi sysex message format for controlling drumpad LED values is as follows:
     // { 
     //      msg_start, mfg_id, dev_id, model_id, msg_type, data_length, data_length_2, 

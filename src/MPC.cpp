@@ -11,15 +11,6 @@ MPC* MPC::Instance() {
 
 /* CONSTRUCTOR */
 MPC::MPC() {
-    // Create lambda expression callback function for midi message handling
-    auto callback = [this](libremidi::message&& message) {
-        this->HandleMidiMessage(message);
-    };
-
-    midi_in = std::make_unique<libremidi::midi_in>(
-        libremidi::input_configuration{ .on_message = callback }
-    );
-
     // Add a drumpad object for each preset drumpad id code
     // int padNumber = 0;
 
@@ -34,7 +25,10 @@ MPC::MPC() {
     //     drumpads.push_back(DrumPad{ MPC_CONSTANTS::DRUMPAD_IDENTIFIERS[i], i });
     //     drum_map[drumpads[i].midiCode] = &drumpads[i];
     // }
+    midi = MidiController::Instance();
 
+    midiCallback = [this](libremidi::message message) { HandleMidiMessage(message); };
+    midi->setMidiCallbackFunction(midiCallback);
     setupDrumPads();
 };
 
@@ -76,8 +70,7 @@ void MPC::setupDrumPads() {
 void MPC::Boot() {
 
     // Open midi ports
-    midi_in->open_port(observer.get_input_ports()[0]);
-    midi_out.open_port(observer.get_output_ports()[0]);
+
 
     // Set initial colour of drumpads
     for (int i = 0; i < drumpads.size(); i++) {
@@ -133,7 +126,7 @@ void MPC::SetPadRGB(DrumPad* pad, RGB colour) {
         0xF0, 0x47, 0x47, 0x4A, 0x65, 0x00, 0x04, 
         padNum, red, green, blue, 0xF7 
     };
-    midi_out.send_message(bytes, sizeof(bytes));
+    midi->midi_out.send_message(bytes, sizeof(bytes));
 };
 
 void MPC::SetPadRGB(DrumPad* pad) {
@@ -148,7 +141,7 @@ void MPC::SetPadRGB(DrumPad* pad) {
         0xF0, 0x47, 0x47, 0x4A, 0x65, 0x00, 0x04, 
         padNum, red, green, blue, 0xF7 
     };
-    midi_out.send_message(bytes, sizeof(bytes));
+    midi->midi_out.send_message(bytes, sizeof(bytes));
 }
 
 void MPC::OnDrumPadDown(DrumPad* drumpad) {

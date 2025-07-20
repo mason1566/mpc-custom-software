@@ -3,6 +3,7 @@
 
 #include <libremidi/libremidi.hpp>
 
+#include "MidiController.h"
 #include "AudioController.h"
 #include "Input.h"
 #include "DrumPad.h"
@@ -18,9 +19,7 @@
 // Singleton
 class MPC {
 public:
-    libremidi::observer observer;
-    std::unique_ptr<libremidi::midi_in> midi_in;
-    libremidi::midi_out midi_out;
+    MidiController* midi = nullptr;
     std::vector<Button> buttons;
     std::vector<DrumPad> drumpads;
     AudioController audio;
@@ -43,6 +42,8 @@ protected:
     void OnDrumPadDown(DrumPad* drumpad);
     void OnDrumPadUp(DrumPad* drumpad);
 
+
+    std::function<void (libremidi::message message)> midiCallback;
 
     // Common MPCController Instance variable
     static MPC* _instance;

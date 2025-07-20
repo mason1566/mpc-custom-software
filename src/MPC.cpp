@@ -66,17 +66,17 @@ void MPC::HandleMidiMessage(libremidi::message message) {
     // }
     // std::cout << std::endl;
 
-    int midiSignal = (int)message.bytes[0];
-    int midiCode = (int)message.bytes[1];
+    int signalCode = (int)message.bytes[0];
+    int midiValue = (int)message.bytes[1];
     int velocity = (int)message.bytes[2];
 
-    if (midiSignal == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
-        DrumPad* drumpad = drum_map[midiCode];
+    if (signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
+        DrumPad* drumpad = drum_map[midiValue];
 
         if (drumpad) OnDrumPadDown(drumpad);
     }
-    else if ((int)message.bytes[0] == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
-        DrumPad* drumpad = drum_map[midiCode];
+    else if (signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
+        DrumPad* drumpad = drum_map[midiValue];
 
         if (drumpad) OnDrumPadUp(drumpad);
     }

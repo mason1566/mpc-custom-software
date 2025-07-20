@@ -33,22 +33,10 @@ MPC::MPC() {
 };
 
 void MPC::setupDrumPads() {
-    drumpads.push_back(DrumPad { 37, 0});
-    drumpads.push_back(DrumPad { 36, 1});
-    drumpads.push_back(DrumPad { 42, 2});
-    drumpads.push_back(DrumPad { 82, 3});
-    drumpads.push_back(DrumPad { 40, 4});
-    drumpads.push_back(DrumPad { 38, 5});
-    drumpads.push_back(DrumPad { 46, 6});
-    drumpads.push_back(DrumPad { 44, 7});
-    drumpads.push_back(DrumPad { 48, 8});
-    drumpads.push_back(DrumPad { 47, 9});
-    drumpads.push_back(DrumPad { 45, 10});
-    drumpads.push_back(DrumPad { 43, 11});
-    drumpads.push_back(DrumPad { 49, 12});
-    drumpads.push_back(DrumPad { 55, 13});
-    drumpads.push_back(DrumPad { 51, 14});
-    drumpads.push_back(DrumPad { 53, 15});
+    // add drumpads to the vector
+    for (int i = 0; i < MPC_CONSTANTS::DRUMPAD_COUNT; i++) {
+        drumpads.push_back( DrumPad { MPC_CONSTANTS::DRUMPAD_MIDI_VALUES[i], i } );
+    }
 
     // Set initial colour of drumpads
     float percent = 0;
@@ -147,6 +135,8 @@ void MPC::SetPadRGB(DrumPad* pad) {
 void MPC::OnDrumPadDown(DrumPad* drumpad) {
     drumpad->setLightOn();
     SetPadRGB(drumpad, drumpad->getLightColour());
+
+    audio.MakeSound();
 }
 
 void MPC::OnDrumPadUp(DrumPad* drumpad) {

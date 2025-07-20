@@ -1,6 +1,7 @@
 #ifndef UTILITY
 #define UTILITY
 #include <vector>
+#include <string>
 
 namespace MPC_CONSTANTS {
 
@@ -14,4 +15,13 @@ namespace MPC_CONSTANTS {
         static int DRUMPAD_UP = 0x89;
     }
 }
+
+namespace MPC_STATES {
+    static std::string COPY_PASTE_SOUND { "COPY_PASTE_SOUND" };
+    static std::string CHANGE_SOUND { "CHANGE_SOUND" };
+    static std::string CHANGE_VOLUME { "CHANGE_VOLUME" };
+    static std::string CHANGE_SOUND_START_TIME { "CHANGE_SOUND_START_TIME" };
+    static std::string CHANGE_SOUND_END_TIME { "CHANGE_SOUND_END_TIME" };
+}
+
 #endif

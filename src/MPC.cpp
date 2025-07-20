@@ -54,7 +54,7 @@ void MPC::Boot() {
     // Set initial colour of drumpads
     for (int i = 0; i < drumpads.size(); i++) {
         drumpads[i].setLightOff();
-        SetPadRGB(&(drumpads[i]));
+        midi_send->setPadRGB(i, drumpads[i].getLightColour());
     }
 
     while (true) {}
@@ -85,23 +85,14 @@ void MPC::HandleMidiMessage(libremidi::message message) {
     // std::cout << input_map[inputCode]->idCode << std::endl;
 };
 
-void MPC::SetPadRGB(DrumPad* pad, RGB colour) {
-    // pad->setLightColour(colour);
-    midi_send->setPadRGB(pad->padNumber, colour);
-};
-
-void MPC::SetPadRGB(DrumPad* pad) {
-    midi_send->setPadRGB(pad->padNumber, pad->getLightColour());
-}
-
 void MPC::OnDrumPadDown(DrumPad* drumpad) {
     drumpad->setLightOn();
-    SetPadRGB(drumpad, drumpad->getLightColour());
+    midi_send->setPadRGB(drumpad->padNumber, drumpad->getLightColour());
 
     audio.MakeSound();
 }
 
 void MPC::OnDrumPadUp(DrumPad* drumpad) {
     drumpad->setLightOff();
-    SetPadRGB(drumpad, drumpad->getLightColour());
+    midi_send->setPadRGB(drumpad->padNumber, drumpad->getLightColour());
 }

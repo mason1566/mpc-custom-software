@@ -30,8 +30,6 @@ public:
 
     void Boot();
     void HandleMidiMessage(libremidi::message message);
-    void SetPadRGB(DrumPad* pad, RGB colour);
-    void SetPadRGB(DrumPad* pad);
 
     // Singleton Instance function. This is the accessor to the shared MPCController instance
     static MPC* Instance();

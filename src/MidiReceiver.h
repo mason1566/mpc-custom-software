@@ -1,26 +1,24 @@
-#ifndef MIDI_CONTROLLER
-#define MIDI_CONTROLLER
+#ifndef MIDI_RECEIVER
+#define MIDI_RECEIVER
 
-#include <libremidi/libremidi.hpp>
+#include "BaseMidi.h"
 #include <functional>
 
 // Singleton
-class MidiController {
+class MidiReceiver : protected BaseMidi {
 public:
-    libremidi::observer observer;
     std::unique_ptr<libremidi::midi_in> midi_in;
-    libremidi::midi_out midi_out;
 
     void setMidiCallbackFunction(std::function<void (libremidi::message message)> midiCallbackFunc) { midiCallback = midiCallbackFunc; }
 
     // Singleton instance function
-    static MidiController* Instance();
-protected:
-    MidiController();
+    static MidiReceiver* Instance();
+private:
+    MidiReceiver();
 
     std::function<void (libremidi::message message)> midiCallback = 0;
 
-    static MidiController* _instance;
+    static MidiReceiver* _instance;
 };
 
 #endif

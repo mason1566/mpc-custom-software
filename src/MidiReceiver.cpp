@@ -1,16 +1,14 @@
-#include "MidiController.h"
+#include "MidiReceiver.h"
 
-// Singleton Instance
-MidiController* MidiController::_instance = nullptr;
+MidiReceiver* MidiReceiver::_instance = nullptr;
 
-MidiController* MidiController::Instance() {
-    if (!_instance) 
-        _instance = new MidiController;
+MidiReceiver* MidiReceiver::Instance() {
+    if (!_instance)
+        _instance = new MidiReceiver;
     return _instance;
 }
 
-// Constructor
-MidiController::MidiController() {
+MidiReceiver::MidiReceiver() {
     // Create lambda expression callback function for midi message handling
     auto callback = [this](libremidi::message&& message) {
         // this->HandleMidiMessage(message);
@@ -22,6 +20,5 @@ MidiController::MidiController() {
         libremidi::input_configuration{ .on_message = callback }
     );
 
-    midi_in->open_port(observer.get_input_ports()[0]);
-    midi_out.open_port(observer.get_output_ports()[0]);
+    midi_in->open_port(getMidiObserver()->get_input_ports()[0]);
 }

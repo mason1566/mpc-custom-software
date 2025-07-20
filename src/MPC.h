@@ -3,7 +3,8 @@
 
 #include <libremidi/libremidi.hpp>
 
-#include "MidiController.h"
+#include "MidiSender.h"
+#include "MidiReceiver.h"
 #include "AudioController.h"
 #include "Input.h"
 #include "DrumPad.h"
@@ -19,7 +20,8 @@
 // Singleton
 class MPC {
 public:
-    MidiController* midi = nullptr;
+    MidiSender* midi_send = nullptr;
+    MidiReceiver* midi_receive = nullptr;
     std::vector<Button> buttons;
     std::vector<DrumPad> drumpads;
     AudioController audio;

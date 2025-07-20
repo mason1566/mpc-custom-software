@@ -11,10 +11,11 @@ MPC* MPC::Instance() {
 
 /* CONSTRUCTOR */
 MPC::MPC() {
-    midi = MidiController::Instance();
+    midi_send = MidiSender::Instance();
+    midi_receive = MidiReceiver::Instance();
 
     midiCallback = [this](libremidi::message message) { HandleMidiMessage(message); };
-    midi->setMidiCallbackFunction(midiCallback);
+    midi_receive->setMidiCallbackFunction(midiCallback);
     setupDrumPads();
 
     // Turn on Pad Mute Button light
@@ -104,7 +105,7 @@ void MPC::SetPadRGB(DrumPad* pad, RGB colour) {
         0xF0, 0x47, 0x47, 0x4A, 0x65, 0x00, 0x04, 
         padNum, red, green, blue, 0xF7 
     };
-    midi->midi_out.send_message(bytes, sizeof(bytes));
+    midi_send->midi_out.send_message(bytes, sizeof(bytes));
 };
 
 void MPC::SetPadRGB(DrumPad* pad) {
@@ -119,7 +120,7 @@ void MPC::SetPadRGB(DrumPad* pad) {
         0xF0, 0x47, 0x47, 0x4A, 0x65, 0x00, 0x04, 
         padNum, red, green, blue, 0xF7 
     };
-    midi->midi_out.send_message(bytes, sizeof(bytes));
+    midi_send->midi_out.send_message(bytes, sizeof(bytes));
 }
 
 void MPC::OnDrumPadDown(DrumPad* drumpad) {

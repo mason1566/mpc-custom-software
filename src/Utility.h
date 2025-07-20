@@ -31,7 +31,7 @@ namespace MPC_CONSTANTS {
         static int SHIFT = 49;
         static int BROWSE = 50;
         static int MAIN = 52;
-        static int TAP_TEMP = 53;
+        static int TAP_TEMPO = 53;
         static int PLUS = 54;
         static int MINUS = 55;
         static int ZOOM = 66;
@@ -65,6 +65,8 @@ namespace MPC_CONSTANTS {
     namespace INPUT_TYPES {
         static std::string BUTTON_INPUT { "BUTTON_INPUT" };
         static std::string DRUMPAD_INPUT { "DRUMPAD_INPUT" };
+        static std::string ONE_COLOUR_BUTTON_INPUT { "ONE_COLOUR_BUTTON_INPUT" };
+        static std::string TWO_COLOUR_BUTTON_INPUT { "TWO_COLOUR_BUTTON_INPUT" };
     }
 }
 

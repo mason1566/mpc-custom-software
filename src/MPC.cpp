@@ -11,20 +11,6 @@ MPC* MPC::Instance() {
 
 /* CONSTRUCTOR */
 MPC::MPC() {
-    // Add a drumpad object for each preset drumpad id code
-    // int padNumber = 0;
-
-    // for (int id_code : MPC_CONSTANTS::DRUMPAD_IDENTIFIERS) {
-    //     DrumPad drumpad { id_code, padNumber };
-    //     drumpads.push_back(drumpad);
-    //     input_map[id_code] = (Input*) &drumpads.back();
-    //     padNumber++;
-    // }
-
-    // for (int i = 0; i < MPC_CONSTANTS::DRUMPAD_COUNT; i++) {
-    //     drumpads.push_back(DrumPad{ MPC_CONSTANTS::DRUMPAD_IDENTIFIERS[i], i });
-    //     drum_map[drumpads[i].midiCode] = &drumpads[i];
-    // }
     midi = MidiController::Instance();
 
     midiCallback = [this](libremidi::message message) { HandleMidiMessage(message); };
@@ -56,10 +42,6 @@ void MPC::setupDrumPads() {
 
 /* MEMBER FUNCTIONS */
 void MPC::Boot() {
-
-    // Open midi ports
-
-
     // Set initial colour of drumpads
     for (int i = 0; i < drumpads.size(); i++) {
         drumpads[i].setLightOff();
@@ -89,14 +71,9 @@ void MPC::HandleMidiMessage(libremidi::message message) {
 
         if (drumpad) OnDrumPadUp(drumpad);
     }
-
-    // int inputCode = message.bytes[1];
-    // std::cout << input_map[inputCode]->idCode << std::endl;
 };
 
 void MPC::SetPadRGB(DrumPad* pad, RGB colour) {
-    // pad->setLightColour(colour);
-
     // Midi sysex message format for controlling drumpad LED values is as follows:
     // { 
     //      msg_start, mfg_id, dev_id, model_id, msg_type, data_length, data_length_2, 

@@ -11,6 +11,10 @@ namespace MPC_CONSTANTS {
     static int DRUMPAD_MIDI_VALUES[] { 37, 36, 42, 82, 40, 38, 46, 44, 48, 47, 45, 43, 49, 55, 51, 53 };
 
     namespace MIDI_MESSAGES {
+        // OUTPUT
+        static unsigned char MIDI_CONTROL_CHANGE = 0xB0;
+
+        // INPUT
         static int DRUMPAD_DOWN = 0x99;
         static int DRUMPAD_UP = 0x89;
     }

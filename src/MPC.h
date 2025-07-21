@@ -6,7 +6,7 @@
 #include "MidiSender.h"
 #include "MidiReceiver.h"
 #include "AudioController.h"
-#include "Input.h"
+#include "BaseInput.h"
 #include "DrumPad.h"
 #include "Button.h"
 #include "Utility.h"
@@ -25,7 +25,7 @@ public:
     std::vector<Button> buttons;
     std::vector<DrumPad> drumpads;
     AudioController audio;
-    // std::unordered_map<int, Input*> input_map;
+    std::unordered_map<int, BaseInput*> input_map;
     std::unordered_map<int, DrumPad*> drum_map;
 
     void Boot();

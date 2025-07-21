@@ -39,9 +39,10 @@ void MPC::setupDrumPads() {
         percent += step;
     }
 
-    // Add drumpads to the drum_map
+    // Add drumpads to input_map and drum_map
     for (int i = 0; i < drumpads.size(); i++) {
         drum_map[drumpads[i].midiCode] = &(drumpads[i]);
+        input_map[drumpads[i].midiCode] = &(drumpads[i]);
     }
 }
 

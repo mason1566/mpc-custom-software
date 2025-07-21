@@ -14,7 +14,7 @@ MPC::MPC() {
     midi_send = MidiSender::Instance();
     midi_receive = MidiReceiver::Instance();
 
-    midiCallback = [this](libremidi::message message) { HandleMidiMessage(message); };
+    auto midiCallback = [this](MidiInputSignal message) { HandleMidiMessage(message); };
     midi_receive->setMidiCallbackFunction(midiCallback);
     setupDrumPads();
     setupButtons();
@@ -35,28 +35,24 @@ void MPC::Boot() {
     while (true) {}
 };
 
-void MPC::HandleMidiMessage(libremidi::message message) {
+void MPC::HandleMidiMessage(MidiInputSignal midiSignal) {
     // for (auto byte : message.bytes) {
     //     std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
     // }
     // std::cout << std::endl;
 
-    int signalCode = (int)message.bytes[0];
-    int midiValue = (int)message.bytes[1];
-    int velocity = (int)message.bytes[2];
-
-    if (signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
-        DrumPad* drumpad = drum_map[midiValue];
+    if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
+        DrumPad* drumpad = drum_map[midiSignal.midiValue];
 
         if (drumpad) OnDrumPadDown(drumpad);
     }
-    else if (signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
-        DrumPad* drumpad = drum_map[midiValue];
+    else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
+        DrumPad* drumpad = drum_map[midiSignal.midiValue];
 
         if (drumpad) OnDrumPadUp(drumpad);
     }
-    else if (signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_DOWN) {
-        Button* button = button_map[midiValue];
+    else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_DOWN) {
+        Button* button = button_map[midiSignal.midiValue];
 
         if (button) OnButtonDown(button);
     }

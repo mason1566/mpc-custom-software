@@ -11,6 +11,7 @@
 #include "Button.h"
 #include "Utility.h"
 #include "RGB.h"
+#include "MidiInputSignal.h"
 
 #include <vector>
 #include <iomanip>
@@ -30,7 +31,7 @@ public:
     std::unordered_map<int, DrumPad*> drum_map;
 
     void Boot();
-    void HandleMidiMessage(libremidi::message message);
+    void HandleMidiMessage(MidiInputSignal midiSignal);
 
     // Singleton Instance function. This is the accessor to the shared MPCController instance
     static MPC* Instance();
@@ -48,9 +49,6 @@ protected:
     void OnDrumPadDown(DrumPad* drumpad);
     void OnDrumPadHold(DrumPad* drumpad);
     void OnDrumPadUp(DrumPad* drumpad);
-
-
-    std::function<void (libremidi::message message)> midiCallback;
 
     // Common MPCController Instance variable
     static MPC* _instance;

@@ -11,9 +11,10 @@ MidiReceiver* MidiReceiver::Instance() {
 MidiReceiver::MidiReceiver() {
     // Create lambda expression callback function for midi message handling
     auto callback = [this](libremidi::message&& message) {
-        // this->HandleMidiMessage(message);
-        if (midiCallback != 0)
-            midiCallback(message);
+        if (midiCallback != 0) {
+            MidiInputSignal midiSignal { (int)message.bytes[0], (int)message.bytes[1], (int)message.bytes[2] };
+            midiCallback(midiSignal);
+        }
     };
 
     midi_in = std::make_unique<libremidi::midi_in>(

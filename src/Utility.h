@@ -76,8 +76,6 @@ namespace MPC_CONSTANTS {
     namespace INPUT_TYPES {
         static std::string BUTTON_INPUT { "BUTTON_INPUT" };
         static std::string DRUMPAD_INPUT { "DRUMPAD_INPUT" };
-        static std::string ONE_COLOUR_BUTTON_INPUT { "ONE_COLOUR_BUTTON_INPUT" };
-        static std::string TWO_COLOUR_BUTTON_INPUT { "TWO_COLOUR_BUTTON_INPUT" };
     }
 }
 

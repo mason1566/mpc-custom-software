@@ -29,6 +29,7 @@ public:
     std::unordered_map<int, BaseInput*> input_map;
     std::unordered_map<int, Button*> button_map;
     std::unordered_map<int, DrumPad*> drum_map;
+    DrumPad* currentDrumpad = nullptr;
 
     void Boot();
     void HandleMidiMessage(MidiInputSignal midiSignal);

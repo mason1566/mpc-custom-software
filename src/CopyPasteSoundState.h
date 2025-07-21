@@ -1,12 +1,12 @@
 #ifndef COPY_PASTE_SOUND_STATE
 #define COPY_PASTE_SOUND_STATE
 
-#include "MPCState.h"
+#include "BaseState.h"
 
-class CopyPasteSoundState : public MPCState {
+class CopyPasteSoundState : public BaseState {
 public:
 
-    CopyPasteSoundState(std::string stateName) : MPCState(stateName) {}
+    CopyPasteSoundState(std::string stateName) : BaseState(stateName) {}
 };
 
 #endif

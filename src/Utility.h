@@ -57,9 +57,20 @@ namespace MPC_CONSTANTS {
         // OUTPUT
         static unsigned char MIDI_CONTROL_CHANGE = 0xB0;
 
-        // INPUT
+        /* INPUT */
+        // Drumpads
         static int DRUMPAD_DOWN = 0x99;
         static int DRUMPAD_UP = 0x89;
+        static int DRUMPAD_HOLD = 0xA9;
+
+        // Buttons
+        static int BUTTON_DOWN = 0x90;
+        static int BUTTON_UP = 0x80;
+
+        // Knob
+        static int KNOB_TURN = 0xB0;
+        static int KNOB_TURN_CLOCKWISE_VELOCITY = 0x01;
+        static int KNOB_TURN_COUNTER_CLOCKWISE_VELOCITY = 0x7F;
     }
 
     namespace INPUT_TYPES {

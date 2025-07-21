@@ -62,10 +62,10 @@ void MPC::Boot() {
 };
 
 void MPC::HandleMidiMessage(libremidi::message message) {
-    // for (auto byte : message.bytes) {
-    //     std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
-    // }
-    // std::cout << std::endl;
+    for (auto byte : message.bytes) {
+        std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
+    }
+    std::cout << std::endl;
 
     int signalCode = (int)message.bytes[0];
     int midiValue = (int)message.bytes[1];

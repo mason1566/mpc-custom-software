@@ -19,6 +19,9 @@ MPC::MPC() {
     setupDrumPads();
     setupButtons();
 
+    // Set the state
+    currentState = (MPCState*) new DefaultState(this);
+
     // Turn on Pad Mute Button light
     // unsigned char message[] { MPC_CONSTANTS::MIDI_MESSAGES::MIDI_CONTROL_CHANGE, 4, 3 };
     // midi->midi_out.send_message(message, sizeof(message));
@@ -37,24 +40,30 @@ void MPC::Boot() {
 
 void MPC::HandleMidiMessage(MidiInputSignal midiSignal) {
     // for (auto byte : message.bytes) {
-    //     std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
+        // std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
     // }
     // std::cout << std::endl;
+    if (currentState) {
+        // DRUMPAD DOWN
+        if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
+            DrumPad* drumpad = drum_map[midiSignal.midiValue];
+            DrumPadRequest request { drumpad, DrumPadSignal::DRUMPAD_DOWN };
 
-    if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
-        DrumPad* drumpad = drum_map[midiSignal.midiValue];
+            currentState->handleRequest(request);
+        }
+        // DRUMPAD UP
+        else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
+            DrumPad* drumpad = drum_map[midiSignal.midiValue];
+            DrumPadRequest request { drumpad, DrumPadSignal::DRUMPAD_UP };
 
-        if (drumpad) OnDrumPadDown(drumpad);
-    }
-    else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
-        DrumPad* drumpad = drum_map[midiSignal.midiValue];
+            currentState->handleRequest(request);
+        }
+        else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_UP) {
+            Button* button = button_map[midiSignal.midiValue];
+            ButtonRequest request { button, ButtonSignal::BUTTON_UP };
 
-        if (drumpad) OnDrumPadUp(drumpad);
-    }
-    else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_DOWN) {
-        Button* button = button_map[midiSignal.midiValue];
-
-        if (button) OnButtonDown(button);
+            currentState->handleRequest(request);
+        }
     }
 
     // int inputCode = message.bytes[1];

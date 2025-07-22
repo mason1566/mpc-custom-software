@@ -12,6 +12,8 @@
 #include "Utility.h"
 #include "RGB.h"
 #include "MidiInputSignal.h"
+#include "ButtonRequest.h"
+#include "DrumPadRequest.h"
 #include "MPCState.h"
 #include "DefaultState.h"
 

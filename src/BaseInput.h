@@ -6,11 +6,11 @@
 
 class BaseInput {
 public:
-    int midiCode;
-    std::string inputType;
+    int midiValue;
     int velocity = 0;
+
     
-    BaseInput(int midiCode, std::string inputType) : midiCode(midiCode), inputType(inputType) {}
+    BaseInput(int midiValue) : midiValue(midiValue) {}
     virtual ~BaseInput() = default;
 };
 

@@ -32,8 +32,8 @@ void DefaultState::handleDrumPadUp(DrumPad* drumpad) {
 }
 
 void DefaultState::handleButtonDown(Button* button) {
-    std::cout << button->midiCode << std::endl;
-    if (button->midiCode == MPC_CONSTANTS::BUTTON_MIDI_VALUES::COPY) {
+    std::cout << button->midiValue << std::endl;
+    if (button->midiValue == MPC_CONSTANTS::BUTTON_MIDI_VALUES::COPY) {
         mpc->midi_send->setPadRGB(0, RGB::GREEN);
     }
 }

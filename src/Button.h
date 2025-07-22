@@ -6,7 +6,7 @@
 
 class Button : public BaseInput {
 public:
-    Button(int midiCode) : BaseInput(midiCode, MPC_CONSTANTS::INPUT_TYPES::BUTTON_INPUT) {}
+    Button(int midiValue) : BaseInput(midiValue) {}
 };
 
 #endif

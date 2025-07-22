@@ -15,20 +15,22 @@ MidiReceiver::MidiReceiver() {
             int signalCode { (int)message.bytes[0] };
             int midiValue { (int)message.bytes[1] };
             int velocity { (int)message.bytes[2] };
-
-            if (signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN || signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_HOLD || signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) 
+            
+            switch (signalCode) 
             {
-                MidiInputSignal midiSignal { signalCode, midiValue, velocity, MidiInputType::DRUMPAD_INPUT  };
-                midiCallback(midiSignal);
+            case MIDI_INPUT_SIGNALS::DRUMPAD_DOWN:
+                midiCallback(MidiInputSignal { signalCode, midiValue, velocity, InputType::DRUMPAD_INPUT, InputSignal::DRUMPAD_DOWN } );
+            case MIDI_INPUT_SIGNALS::DRUMPAD_HOLD:
+                midiCallback(MidiInputSignal { signalCode, midiValue, velocity, InputType::DRUMPAD_INPUT, InputSignal::DRUMPAD_HOLD } );
+            case MIDI_INPUT_SIGNALS::DRUMPAD_UP:
+                midiCallback(MidiInputSignal { signalCode, midiValue, velocity, InputType::DRUMPAD_INPUT, InputSignal::DRUMPAD_UP } );
+            case MIDI_INPUT_SIGNALS::BUTTON_DOWN:
+                midiCallback(MidiInputSignal { signalCode, midiValue, velocity, InputType::BUTTON_INPUT, InputSignal::BUTTON_DOWN } );
+            case MIDI_INPUT_SIGNALS::BUTTON_UP:
+                midiCallback(MidiInputSignal { signalCode, midiValue, velocity, InputType::BUTTON_INPUT, InputSignal::BUTTON_UP } );
+            default:
+                break;
             }
-            else if (signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_DOWN || signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_UP) 
-            {
-                MidiInputSignal midiSignal { signalCode, midiValue, velocity, MidiInputType::BUTTON_INPUT  };
-                midiCallback(midiSignal);
-            }
-
-
-
         }
     };
 

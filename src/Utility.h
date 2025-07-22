@@ -52,39 +52,43 @@ namespace MPC_CONSTANTS {
         static int MODE = 114;
         static int COPY = 122;
     }
-
-    namespace MIDI_MESSAGES {
-        // OUTPUT
-        static unsigned char MIDI_CONTROL_CHANGE = 0xB0;
-
-        /* INPUT */
-        // Drumpads
-        static const int DRUMPAD_DOWN = 0x99;
-        static const int DRUMPAD_UP = 0x89;
-        static const int DRUMPAD_HOLD = 0xA9;
-
-        // Buttons
-        static const int BUTTON_DOWN = 0x90;
-        static const int BUTTON_UP = 0x80;
-
-        // Knob
-        static const int KNOB_TURN = 0xB0;
-        static const int KNOB_TURN_CLOCKWISE_VELOCITY = 0x01;
-        static const int KNOB_TURN_COUNTER_CLOCKWISE_VELOCITY = 0x7F;
-    }
-
-    namespace INPUT_TYPES {
-        static std::string BUTTON_INPUT { "BUTTON_INPUT" };
-        static std::string DRUMPAD_INPUT { "DRUMPAD_INPUT" };
-    }
 }
 
-namespace MPC_STATES {
-    static std::string COPY_PASTE_SOUND { "COPY_PASTE_SOUND" };
-    static std::string CHANGE_SOUND { "CHANGE_SOUND" };
-    static std::string CHANGE_VOLUME { "CHANGE_VOLUME" };
-    static std::string CHANGE_SOUND_START_TIME { "CHANGE_SOUND_START_TIME" };
-    static std::string CHANGE_SOUND_END_TIME { "CHANGE_SOUND_END_TIME" };
+namespace MIDI_INPUT_SIGNALS {
+    // OUTPUT
+    static unsigned char MIDI_CONTROL_CHANGE = 0xB0;
+
+    /* INPUT */
+    // Drumpads
+    static const int DRUMPAD_DOWN = 0x99;
+    static const int DRUMPAD_UP = 0x89;
+    static const int DRUMPAD_HOLD = 0xA9;
+
+    // Buttons
+    static const int BUTTON_DOWN = 0x90;
+    static const int BUTTON_UP = 0x80;
+
+    // Knob
+    static const int KNOB_TURN = 0xB0;
+    static const int KNOB_TURN_CLOCKWISE_VELOCITY = 0x01;
+    static const int KNOB_TURN_COUNTER_CLOCKWISE_VELOCITY = 0x7F;
 }
+
+enum class InputType {
+    DRUMPAD_INPUT, BUTTON_INPUT
+};
+
+enum class InputSignal {
+    DRUMPAD_DOWN, DRUMPAD_HOLD, DRUMPAD_UP,
+    BUTTON_DOWN, BUTTON_UP
+};
+
+// namespace MPC_STATES {
+//     static std::string COPY_PASTE_SOUND { "COPY_PASTE_SOUND" };
+//     static std::string CHANGE_SOUND { "CHANGE_SOUND" };
+//     static std::string CHANGE_VOLUME { "CHANGE_VOLUME" };
+//     static std::string CHANGE_SOUND_START_TIME { "CHANGE_SOUND_START_TIME" };
+//     static std::string CHANGE_SOUND_END_TIME { "CHANGE_SOUND_END_TIME" };
+// }
 
 #endif

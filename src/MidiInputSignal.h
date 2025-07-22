@@ -1,18 +1,17 @@
 #ifndef MIDI_INPUT_SIGNAL
 #define MIDI_INPUT_SIGNAL
 
-enum class MidiInputType {
-    DRUMPAD_INPUT, BUTTON_INPUT
-};
+#include "Utility.h"
 
 class MidiInputSignal {
 public:
     int signalCode;
     int midiValue;
     int velocity;
-    MidiInputType inputType;
+    InputType inputType;
+    InputSignal inputSignal;
 
-    MidiInputSignal(int signalCode, int midiValue, int velocity, MidiInputType inputType) : signalCode(signalCode), midiValue(midiValue), velocity(velocity), inputType(inputType) {}
+    MidiInputSignal(int signalCode, int midiValue, int velocity, InputType inputType, InputSignal inputSignal) : signalCode(signalCode), midiValue(midiValue), velocity(velocity), inputType(inputType), inputSignal(inputSignal) {}
 };
 
 #endif

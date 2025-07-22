@@ -39,25 +39,29 @@ void MPC::Boot() {
 };
 
 void MPC::HandleMidiMessage(MidiInputSignal midiSignal) {
-    // for (auto byte : message.bytes) {
-        // std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
-    // }
-    // std::cout << std::endl;
+    std::cout << midiSignal.midiValue << std::endl;
 
     if (currentState) {
-        switch (midiSignal.signalCode) 
-        {
-        case MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN:
+        if (midiSignal.inputType == InputType::DRUMPAD_INPUT) {
             currentDrumpad = drum_map[midiSignal.midiValue];
-            currentDrumpad->velocity = midiSignal.velocity;
-            currentState->handleRequest(DrumPadRequest(currentDrumpad, DrumPadSignal::DRUMPAD_DOWN));
-            break;
-        case MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_DOWN:
-            currentState->handleRequest(ButtonRequest(button_map[midiSignal.midiValue], ButtonSignal::BUTTON_DOWN));
-            break;
-        default:
-            break;
         }
+        else if (midiSignal.inputType == InputType::BUTTON_INPUT) {
+
+        }
+
+        // switch (midiSignal.signalCode) 
+        // {
+        // case MIDI_INPUT_SIGNALS::DRUMPAD_DOWN:
+        //     currentDrumpad = drum_map[midiSignal.midiValue];
+        //     currentDrumpad->velocity = midiSignal.velocity;
+        //     currentState->handleRequest(DrumPadRequest(currentDrumpad, DrumPadSignal::DRUMPAD_DOWN));
+        //     break;
+        // case MIDI_INPUT_SIGNALS::BUTTON_DOWN:
+        //     currentState->handleRequest(ButtonRequest(button_map[midiSignal.midiValue], ButtonSignal::BUTTON_DOWN));
+        //     break;
+        // default:
+        //     break;
+        // }
     }
 };
 
@@ -80,8 +84,8 @@ void MPC::setupDrumPads() {
 
     // Add drumpads to input_map and drum_map
     for (int i = 0; i < drumpads.size(); i++) {
-        drum_map[drumpads[i].midiCode] = &(drumpads[i]);
-        input_map[drumpads[i].midiCode] = &(drumpads[i]);
+        drum_map[drumpads[i].midiValue] = &(drumpads[i]);
+        input_map[drumpads[i].midiValue] = &(drumpads[i]);
     }
 }
 
@@ -130,7 +134,7 @@ void MPC::setupButtons() {
 
     // Add drumpads to input_map and drum_map
     for (int i = 0; i < buttons.size(); i++) {
-        button_map[buttons[i].midiCode] = &(buttons[i]);
-        input_map[buttons[i].midiCode] = &(buttons[i]);
+        button_map[buttons[i].midiValue] = &(buttons[i]);
+        input_map[buttons[i].midiValue] = &(buttons[i]);
     }
 }

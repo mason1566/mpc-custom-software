@@ -10,10 +10,19 @@ class MPC;
 class MPCState {
 public:
     MPCState(MPC* mpc) : mpc(mpc) {}
-    virtual void handleRequest(DrumPadRequest request) = 0;
-    virtual void handleRequest(ButtonRequest request) = 0;
+    void handleRequest(DrumPadRequest request);
+    void handleRequest(ButtonRequest request);
 protected:
     MPC* mpc;
+
+    // DrumPad input handlers
+    virtual void handleDrumPadDown(DrumPad* drumpad) = 0;
+    virtual void handleDrumPadHold(DrumPad* drumpad) = 0;
+    virtual void handleDrumPadUp(DrumPad* drumpad) = 0;
+
+    // Button input handlers
+    virtual void handleButtonDown(Button* button) = 0;
+    virtual void handleButtonUp(Button* button) = 0;
 };
 
 #endif

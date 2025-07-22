@@ -1,11 +1,15 @@
-#ifndef DEFAULT_STATE
-#define DEFAULT_STATE
+#ifndef COPY_PASTE_SOUND_STATE
+#define COPY_PASTE_SOUND_STATE
 
 #include "MPCState.h"
+#include "DrumPad.h"
 
-class DefaultState : protected MPCState {
+class CopyPasteSoundState : protected MPCState {
 public:
-    DefaultState(MPC* mpc) : MPCState(mpc) {}
+    DrumPad* drumpad1 = nullptr;
+    DrumPad* drumpad2 = nullptr;
+
+    CopyPasteSoundState(MPC* mpc) : MPCState(mpc) {}
     void handleRequest(DrumPadRequest request);
     void handleRequest(ButtonRequest request);
 protected:

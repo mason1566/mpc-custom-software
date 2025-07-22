@@ -44,25 +44,37 @@ void MPC::HandleMidiMessage(MidiInputSignal midiSignal) {
     // }
     // std::cout << std::endl;
     if (currentState) {
-        // DRUMPAD DOWN
-        if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
-            DrumPad* drumpad = drum_map[midiSignal.midiValue];
-            DrumPadRequest request { drumpad, DrumPadSignal::DRUMPAD_DOWN };
+        // // DRUMPAD DOWN
+        // if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
+        //     DrumPad* drumpad = drum_map[midiSignal.midiValue];
+        //     DrumPadRequest request { drumpad, DrumPadSignal::DRUMPAD_DOWN };
 
-            currentState->handleRequest(request);
-        }
-        // DRUMPAD UP
-        else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
-            DrumPad* drumpad = drum_map[midiSignal.midiValue];
-            DrumPadRequest request { drumpad, DrumPadSignal::DRUMPAD_UP };
+        //     currentState->handleRequest(request);
+        // }
+        // // DRUMPAD UP
+        // else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
+        //     DrumPad* drumpad = drum_map[midiSignal.midiValue];
+        //     DrumPadRequest request { drumpad, DrumPadSignal::DRUMPAD_UP };
 
-            currentState->handleRequest(request);
-        }
-        else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_UP) {
-            Button* button = button_map[midiSignal.midiValue];
-            ButtonRequest request { button, ButtonSignal::BUTTON_UP };
+        //     currentState->handleRequest(request);
+        // }
+        // else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_UP) {
+        //     Button* button = button_map[midiSignal.midiValue];
+        //     ButtonRequest request { button, ButtonSignal::BUTTON_UP };
 
-            currentState->handleRequest(request);
+        //     currentState->handleRequest(request);
+        // }
+
+        switch (midiSignal.signalCode) 
+        {
+        case MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN:
+            currentState->handleRequest(DrumPadRequest(drum_map[midiSignal.midiValue], DrumPadSignal::DRUMPAD_DOWN));
+            break;
+        case MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_DOWN:
+            currentState->handleRequest(ButtonRequest(button_map[midiSignal.midiValue], ButtonSignal::BUTTON_DOWN));
+            break;
+        default:
+            break;
         }
     }
 

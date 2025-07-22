@@ -1,5 +1,5 @@
-#ifndef UTILITY
-#define UTILITY
+#ifndef MIDI_UTILITY
+#define MIDI_UTILITY
 #include <vector>
 #include <string>
 

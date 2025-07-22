@@ -13,6 +13,7 @@
 #include "RGB.h"
 #include "MidiInputSignal.h"
 
+
 #include <vector>
 #include <iomanip>
 #include <iostream>

@@ -12,7 +12,8 @@
 #include "Utility.h"
 #include "RGB.h"
 #include "MidiInputSignal.h"
-
+#include "MPCState.h"
+#include "DefaultState.h"
 
 #include <vector>
 #include <iomanip>
@@ -31,6 +32,7 @@ public:
     std::unordered_map<int, Button*> button_map;
     std::unordered_map<int, DrumPad*> drum_map;
     DrumPad* currentDrumpad = nullptr;
+    MPCState* currentState = nullptr;
 
     void Boot();
     void HandleMidiMessage(MidiInputSignal midiSignal);

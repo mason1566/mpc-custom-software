@@ -1,6 +1,4 @@
 #include "MPC.h"
-#include "MPCState.h"
-// #include "DefaultState.h"
 
 /* SINGLETON INSTANCE IMPLEMENTATION */
 MPC* MPC::_instance = nullptr;

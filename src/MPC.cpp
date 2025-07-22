@@ -20,7 +20,7 @@ MPC::MPC() {
     setupButtons();
 
     // Set the state
-    currentState = (MPCState*) new DefaultState(this);
+    currentState = (MPCState*) new CopyPasteSoundState(this);
 
     // Turn on Pad Mute Button light
     // unsigned char message[] { MPC_CONSTANTS::MIDI_MESSAGES::MIDI_CONTROL_CHANGE, 4, 3 };

@@ -21,6 +21,8 @@ protected:
     // Button input handlers
     void handleButtonDown(Button* button);
     void handleButtonUp(Button* button);
+
+    void performCopyPaste();
 };
 
 #endif

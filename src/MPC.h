@@ -16,6 +16,7 @@
 #include "DrumPadRequest.h"
 #include "MPCState.h"
 #include "DefaultState.h"
+#include "CopyPasteSoundState.h"
 
 #include <vector>
 #include <iomanip>

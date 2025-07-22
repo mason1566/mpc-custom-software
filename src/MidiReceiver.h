@@ -3,6 +3,7 @@
 
 #include "BaseMidi.h"
 #include "MidiInputSignal.h"
+#include "Utility.h"
 #include <functional>
 
 // Singleton

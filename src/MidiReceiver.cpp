@@ -12,8 +12,23 @@ MidiReceiver::MidiReceiver() {
     // Create lambda expression callback function for midi message handling
     auto callback = [this](libremidi::message&& message) {
         if (midiCallback != 0) {
-            MidiInputSignal midiSignal { (int)message.bytes[0], (int)message.bytes[1], (int)message.bytes[2] };
-            midiCallback(midiSignal);
+            int signalCode { (int)message.bytes[0] };
+            int midiValue { (int)message.bytes[1] };
+            int velocity { (int)message.bytes[2] };
+
+            if (signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN || signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_HOLD || signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) 
+            {
+                MidiInputSignal midiSignal { signalCode, midiValue, velocity, MidiInputType::DRUMPAD_INPUT  };
+                midiCallback(midiSignal);
+            }
+            else if (signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_DOWN || signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_UP) 
+            {
+                MidiInputSignal midiSignal { signalCode, midiValue, velocity, MidiInputType::BUTTON_INPUT  };
+                midiCallback(midiSignal);
+            }
+
+
+
         }
     };
 

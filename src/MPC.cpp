@@ -20,7 +20,7 @@ MPC::MPC() {
     setupButtons();
 
     // Set the state
-    currentState = (MPCState*) new CopyPasteSoundState(this);
+    currentState = (MPCState*) new DefaultState(this);
 
     // Turn on Pad Mute Button light
     // unsigned char message[] { MPC_CONSTANTS::MIDI_MESSAGES::MIDI_CONTROL_CHANGE, 4, 3 };
@@ -43,32 +43,14 @@ void MPC::HandleMidiMessage(MidiInputSignal midiSignal) {
         // std::cout << std::hex << std::setw(2) << (int)byte << "(" << std::dec << (int)byte << ")" << " ";
     // }
     // std::cout << std::endl;
+
     if (currentState) {
-        // // DRUMPAD DOWN
-        // if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN) {
-        //     DrumPad* drumpad = drum_map[midiSignal.midiValue];
-        //     DrumPadRequest request { drumpad, DrumPadSignal::DRUMPAD_DOWN };
-
-        //     currentState->handleRequest(request);
-        // }
-        // // DRUMPAD UP
-        // else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_UP) {
-        //     DrumPad* drumpad = drum_map[midiSignal.midiValue];
-        //     DrumPadRequest request { drumpad, DrumPadSignal::DRUMPAD_UP };
-
-        //     currentState->handleRequest(request);
-        // }
-        // else if (midiSignal.signalCode == MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_UP) {
-        //     Button* button = button_map[midiSignal.midiValue];
-        //     ButtonRequest request { button, ButtonSignal::BUTTON_UP };
-
-        //     currentState->handleRequest(request);
-        // }
-
         switch (midiSignal.signalCode) 
         {
         case MPC_CONSTANTS::MIDI_MESSAGES::DRUMPAD_DOWN:
-            currentState->handleRequest(DrumPadRequest(drum_map[midiSignal.midiValue], DrumPadSignal::DRUMPAD_DOWN));
+            currentDrumpad = drum_map[midiSignal.midiValue];
+            currentDrumpad->velocity = midiSignal.velocity;
+            currentState->handleRequest(DrumPadRequest(currentDrumpad, DrumPadSignal::DRUMPAD_DOWN));
             break;
         case MPC_CONSTANTS::MIDI_MESSAGES::BUTTON_DOWN:
             currentState->handleRequest(ButtonRequest(button_map[midiSignal.midiValue], ButtonSignal::BUTTON_DOWN));
@@ -77,9 +59,6 @@ void MPC::HandleMidiMessage(MidiInputSignal midiSignal) {
             break;
         }
     }
-
-    // int inputCode = message.bytes[1];
-    // std::cout << input_map[inputCode]->idCode << std::endl;
 };
 
 /* DRUMPADS */
@@ -104,20 +83,6 @@ void MPC::setupDrumPads() {
         drum_map[drumpads[i].midiCode] = &(drumpads[i]);
         input_map[drumpads[i].midiCode] = &(drumpads[i]);
     }
-}
-
-void MPC::OnDrumPadDown(DrumPad* drumpad) {
-    drumpad->setLightOn();
-    midi_send->setPadRGB(drumpad->padNumber, drumpad->getLightColour());
-
-    audio.MakeSound();
-}
-
-void MPC::OnDrumPadHold(DrumPad* drumpad) {}
-
-void MPC::OnDrumPadUp(DrumPad* drumpad) {
-    drumpad->setLightOff();
-    midi_send->setPadRGB(drumpad->padNumber, drumpad->getLightColour());
 }
 
 /* BUTTONS */
@@ -168,8 +133,4 @@ void MPC::setupButtons() {
         button_map[buttons[i].midiCode] = &(buttons[i]);
         input_map[buttons[i].midiCode] = &(buttons[i]);
     }
-}
-
-void MPC::OnButtonDown(Button* button) {
-    // std::cout << "Button Down!\n";
 }

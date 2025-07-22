@@ -46,16 +46,8 @@ protected:
     // Protected constructor for singleton pattern
     MPC();
 
-    // Button Member Functions
     void setupButtons();
-    void OnButtonDown(Button* button);
-    void OnButtonUp(Button* button);
-
-    // DrumPad Member Functions
     void setupDrumPads();
-    void OnDrumPadDown(DrumPad* drumpad);
-    void OnDrumPadHold(DrumPad* drumpad);
-    void OnDrumPadUp(DrumPad* drumpad);
 
     // Common MPCController Instance variable
     static MPC* _instance;

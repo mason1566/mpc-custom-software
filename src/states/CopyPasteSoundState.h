@@ -2,7 +2,7 @@
 #define COPY_PASTE_SOUND_STATE
 
 #include "MPCState.h"
-#include "DrumPad.h"
+#include "../DrumPad.h"
 
 class CopyPasteSoundState : protected MPCState {
 public:

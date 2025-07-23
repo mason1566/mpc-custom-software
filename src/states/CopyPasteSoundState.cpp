@@ -1,5 +1,5 @@
 #include "CopyPasteSoundState.h"
-#include "MPC.h"
+#include "../MPC.h"
 
 // Protected Input Handlers
 void CopyPasteSoundState::handleDrumPadDown(DrumPad* drumpad) {

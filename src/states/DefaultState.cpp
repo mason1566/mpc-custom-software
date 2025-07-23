@@ -1,6 +1,6 @@
 #include "DefaultState.h"
-#include "MPC.h"
-#include "Utility.h"
+#include "../MPC.h"
+#include "../Utility.h"
 
 // void DefaultState::handleRequest(DrumPadRequest request) {
 //     if (request.signal == DrumPadSignal::DRUMPAD_DOWN) {

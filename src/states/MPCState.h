@@ -1,8 +1,8 @@
 #ifndef MPC_STATE
 #define MPC_STATE
 
-#include "DrumPadRequest.h"
-#include "ButtonRequest.h"
+#include "../DrumPadRequest.h"
+#include "../ButtonRequest.h"
 
 // Forward declaration for class MPC
 class MPC;

@@ -14,9 +14,9 @@
 #include "MidiInputSignal.h"
 #include "ButtonRequest.h"
 #include "DrumPadRequest.h"
-#include "MPCState.h"
-#include "DefaultState.h"
-#include "CopyPasteSoundState.h"
+#include "states/MPCState.h"
+#include "states/DefaultState.h"
+#include "states/CopyPasteSoundState.h"
 
 #include <vector>
 #include <iomanip>

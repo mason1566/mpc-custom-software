@@ -2,18 +2,14 @@
 #define BUTTON_REQUEST
 
 #include "Button.h"
-
-enum class ButtonSignal {
-    BUTTON_DOWN,
-    BUTTON_UP
-};
+#include "MidiInputSignal.h"
 
 class ButtonRequest {
 public:
     Button* button = nullptr;
-    ButtonSignal signal;
+    MidiInputSignal inputSignal;
 
-    ButtonRequest(Button* button, ButtonSignal signal) : button(button), signal(signal) {}
+    ButtonRequest(Button* button, MidiInputSignal inputSignal) : button(button), inputSignal(inputSignal) {}
 };
 
 #endif

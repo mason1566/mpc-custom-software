@@ -2,19 +2,14 @@
 #define DRUMPAD_REQUEST
 
 #include "DrumPad.h"
-
-enum class DrumPadSignal {
-    DRUMPAD_DOWN,
-    DRUMPAD_HOLD,
-    DRUMPAD_UP
-};
+#include "MidiInputSignal.h"
 
 class DrumPadRequest {
 public:
     DrumPad* drumpad = nullptr;
-    DrumPadSignal signal;
+    MidiInputSignal inputSignal;
 
-    DrumPadRequest(DrumPad* drumpad, DrumPadSignal signal) : drumpad(drumpad), signal(signal) {}
+    DrumPadRequest(DrumPad* drumpad, MidiInputSignal inputSignal) : drumpad(drumpad), inputSignal(inputSignal) {}
 };
 
 #endif

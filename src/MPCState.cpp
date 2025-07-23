@@ -2,14 +2,14 @@
 
 void MPCState::handleRequest(DrumPadRequest request) {
     // Route drumpad requests
-    switch (request.signal) {
-        case DrumPadSignal::DRUMPAD_DOWN:
+    switch (request.inputSignal.inputSignal) {
+        case InputSignal::DRUMPAD_DOWN:
             handleDrumPadDown(request.drumpad);
             break;
-        case DrumPadSignal::DRUMPAD_HOLD:
+        case InputSignal::DRUMPAD_HOLD:
             handleDrumPadHold(request.drumpad);
             break;
-        case DrumPadSignal::DRUMPAD_UP:
+        case InputSignal::DRUMPAD_UP:
             handleDrumPadUp(request.drumpad);
             break;
         default:
@@ -19,11 +19,11 @@ void MPCState::handleRequest(DrumPadRequest request) {
 
 void MPCState::handleRequest(ButtonRequest request) {
     // Route button requests
-    switch (request.signal) {
-        case ButtonSignal::BUTTON_DOWN:
+    switch (request.inputSignal.inputSignal) {
+        case InputSignal::BUTTON_DOWN:
             handleButtonDown(request.button);
             break;
-        case ButtonSignal::BUTTON_UP:
+        case InputSignal::BUTTON_UP:
             handleButtonUp(request.button);
             break;
         default:

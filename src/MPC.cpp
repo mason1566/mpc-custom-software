@@ -20,7 +20,7 @@ MPC::MPC() {
     setupButtons();
 
     // Set the state
-    currentState = (MPCState*) new DefaultState(this);
+    stateStack.push((MPCState*) new DefaultState(this));
 
     // Turn on Pad Mute Button light
     // unsigned char message[] { MPC_CONSTANTS::MIDI_MESSAGES::MIDI_CONTROL_CHANGE, 4, 3 };
@@ -41,9 +41,11 @@ void MPC::Boot() {
 void MPC::HandleMidiMessage(MidiInputSignal midiSignal) {
     std::cout << midiSignal.midiValue << std::endl;
 
-    if (currentState) {
+    if (stateStack.top()) {
         if (midiSignal.inputType == InputType::DRUMPAD_INPUT) {
             currentDrumpad = drum_map[midiSignal.midiValue];
+            DrumPadRequest request { currentDrumpad, midiSignal };
+            stateStack.top()->handleRequest(request);
         }
         else if (midiSignal.inputType == InputType::BUTTON_INPUT) {
 

@@ -22,6 +22,7 @@
 #include <iomanip>
 #include <iostream>
 #include <unordered_map>
+#include <stack>
 
 // Singleton
 class MPC {
@@ -35,7 +36,8 @@ public:
     std::unordered_map<int, Button*> button_map;
     std::unordered_map<int, DrumPad*> drum_map;
     DrumPad* currentDrumpad = nullptr;
-    MPCState* currentState = nullptr;
+    std::stack<MPCState*> stateStack;
+
 
     void Boot();
     void HandleMidiMessage(MidiInputSignal midiSignal);

@@ -11,7 +11,7 @@
 // };
 
 void DefaultState::handleRequest(ButtonRequest request) {
-    if (request.signal == ButtonSignal::BUTTON_UP) {
+    if (request.inputSignal.inputSignal == InputSignal::BUTTON_UP) {
         mpc->audio.MakeSound();
     }
 };

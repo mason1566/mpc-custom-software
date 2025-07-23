@@ -1,5 +1,4 @@
 #include "DefaultState.h"
-#include "../MPC.h"
 #include "../Utility.h"
 
 // void DefaultState::handleRequest(DrumPadRequest request) {
@@ -10,17 +9,9 @@
 //     }
 // };
 
-void DefaultState::handleRequest(ButtonRequest request) {
-    if (request.inputSignal.inputSignal == InputSignal::BUTTON_UP) {
-        mpc->audio.MakeSound();
-    }
-};
-
 // Protected Input Handlers
 void DefaultState::handleDrumPadDown(DrumPad* drumpad) {
-    drumpad->setLightOn();
-    mpc->midi_send->setPadRGB(drumpad->padNumber, drumpad->getLightColour());
-    mpc->audio.MakeSound();
+
 }
 
 void DefaultState::handleDrumPadHold(DrumPad* drumpad) {
@@ -32,10 +23,7 @@ void DefaultState::handleDrumPadUp(DrumPad* drumpad) {
 }
 
 void DefaultState::handleButtonDown(Button* button) {
-    std::cout << button->midiValue << std::endl;
-    if (button->midiValue == MPC_CONSTANTS::BUTTON_MIDI_VALUES::COPY) {
-        mpc->midi_send->setPadRGB(0, RGB::GREEN);
-    }
+
 }
 
 void DefaultState::handleButtonUp(Button* button) {

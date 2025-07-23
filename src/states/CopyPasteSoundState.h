@@ -9,7 +9,7 @@ public:
     DrumPad* drumpad1 = nullptr;
     DrumPad* drumpad2 = nullptr;
 
-    CopyPasteSoundState(MPC* mpc) : MPCState(mpc) {}
+    CopyPasteSoundState() : MPCState() {}
     void handleRequest(DrumPadRequest request);
     void handleRequest(ButtonRequest request);
 protected:

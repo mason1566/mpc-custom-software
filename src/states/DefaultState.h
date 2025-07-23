@@ -5,7 +5,7 @@
 
 class DefaultState : protected MPCState {
 public:
-    DefaultState(MPC* mpc) : MPCState(mpc) {}
+    DefaultState() : MPCState() {}
     void handleRequest(DrumPadRequest request);
     void handleRequest(ButtonRequest request);
 protected:

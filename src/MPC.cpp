@@ -20,7 +20,7 @@ MPC::MPC() {
     setupButtons();
 
     // Set the state
-    stateStack.push((MPCState*) new DefaultState(this));
+    stateStack.push((MPCState*) new DefaultState());
 
     // Turn on Pad Mute Button light
     // unsigned char message[] { MPC_CONSTANTS::MIDI_MESSAGES::MIDI_CONTROL_CHANGE, 4, 3 };

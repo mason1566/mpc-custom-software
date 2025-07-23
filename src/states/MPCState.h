@@ -4,16 +4,12 @@
 #include "../DrumPadRequest.h"
 #include "../ButtonRequest.h"
 
-// Forward declaration for class MPC
-class MPC;
-
 class MPCState {
 public:
-    MPCState(MPC* mpc) : mpc(mpc) {}
+    MPCState() {}
     void handleRequest(DrumPadRequest request);
     void handleRequest(ButtonRequest request);
 protected:
-    MPC* mpc;
 
     // DrumPad input handlers
     virtual void handleDrumPadDown(DrumPad* drumpad) = 0;

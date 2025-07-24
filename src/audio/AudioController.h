@@ -5,12 +5,16 @@
 
 class AudioController {
 public:
-    AudioController();
-    ~AudioController();
     void MakeSound();
 
+    static AudioController* Instance();
 protected:
     ma_result result;
     ma_engine engine;
+
+    static AudioController* _instance;
+
+    AudioController();
+    ~AudioController();
 };
 #endif

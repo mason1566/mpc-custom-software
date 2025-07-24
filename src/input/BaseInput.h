@@ -1,7 +1,7 @@
 #ifndef BASE_INPUT
 #define BASE_INPUT
 
-#include "Utility.h"
+#include "../utility/Utility.h"
 #include <string>
 
 class BaseInput {

@@ -1,22 +1,11 @@
 #ifndef DEFAULT_STATE
 #define DEFAULT_STATE
 
-#include "MPCState.h"
+#include "State.h"
 
-class DefaultState : protected MPCState {
+class DefaultState : public State {
 public:
-    DefaultState() : MPCState() {}
-    void handleRequest(DrumPadRequest request);
-    void handleRequest(ButtonRequest request);
-protected:
-    // DrumPad input handlers
-    void handleDrumPadDown(DrumPad* drumpad);
-    void handleDrumPadHold(DrumPad* drumpad);
-    void handleDrumPadUp(DrumPad* drumpad);
-
-    // Button input handlers
-    void handleButtonDown(Button* button);
-    void handleButtonUp(Button* button);
+    std::unique_ptr<Command> handleInput(const InputEvent& inputEvent);
 };
 
 #endif

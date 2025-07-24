@@ -2,7 +2,7 @@
 #define DRUMPAD
 
 #include "BaseInput.h"
-#include "RGB.h"
+#include "../utility/RGB.h"
 
 class DrumPad : public BaseInput {
 public:

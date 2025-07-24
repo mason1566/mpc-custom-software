@@ -1,5 +1,15 @@
 #include "AudioController.h"
 
+// Singleton Pattern
+AudioController* AudioController::_instance = nullptr;
+
+AudioController* AudioController::Instance() {
+    if (!_instance)
+        _instance = new AudioController;
+    return _instance;
+}
+
+// Constructor
 AudioController::AudioController() {
     result = ma_engine_init(NULL, &engine);
     if (result != MA_SUCCESS) {
@@ -7,6 +17,7 @@ AudioController::AudioController() {
     }
 }
 
+// Destructor
 AudioController::~AudioController() {
     ma_engine_uninit(&engine);
 }

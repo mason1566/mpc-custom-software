@@ -3,53 +3,39 @@
 
 #include <libremidi/libremidi.hpp>
 
-#include "MidiSender.h"
-#include "MidiReceiver.h"
-#include "AudioController.h"
-#include "BaseInput.h"
-#include "DrumPad.h"
-#include "Button.h"
-#include "Utility.h"
-#include "RGB.h"
-#include "MidiInputSignal.h"
-#include "ButtonRequest.h"
-#include "DrumPadRequest.h"
-#include "states/MPCState.h"
-#include "states/DefaultState.h"
-#include "states/CopyPasteSoundState.h"
+#include "midi/MidiSender.h"
+#include "midi/MidiReceiver.h"
+#include "audio/AudioController.h"
+#include "states/StateManager.h"
+#include "commands/CommandProcessor.h"
+#include "input/InputManager.h"
+#include "MPCContext.h"
 
 #include <vector>
 #include <iomanip>
 #include <iostream>
-#include <unordered_map>
-#include <stack>
 
 // Singleton
+// MPC is simply a Coordinator between the objects. 
+// MPC wires up connections via callback functions and lets the objects handle the rest
 class MPC {
 public:
-    MidiSender* midi_send = nullptr;
-    MidiReceiver* midi_receive = nullptr;
-    std::vector<Button> buttons;
-    std::vector<DrumPad> drumpads;
-    AudioController audio;
-    std::unordered_map<int, BaseInput*> input_map;
-    std::unordered_map<int, Button*> button_map;
-    std::unordered_map<int, DrumPad*> drum_map;
-    DrumPad* currentDrumpad = nullptr;
-    std::stack<MPCState*> stateStack;
+    MidiSender* midiSend = nullptr;
+    MidiReceiver* midiReceive = nullptr;
+    AudioController* audio = nullptr;
+    StateManager stateManager;
+    CommandProcessor commandProcessor;
+    InputManager inputManager;
 
+    MPCContext* mpcContext = nullptr;
 
     void Boot();
-    void HandleMidiMessage(MidiInputSignal midiSignal);
 
     // Singleton Instance function. This is the accessor to the shared MPCController instance
     static MPC* Instance();
 protected:
     // Protected constructor for singleton pattern
     MPC();
-
-    void setupButtons();
-    void setupDrumPads();
 
     // Common MPCController Instance variable
     static MPC* _instance;

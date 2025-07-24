@@ -2,7 +2,7 @@
 #define MIDI_SENDER
 
 #include "BaseMidi.h"
-#include "RGB.h"
+#include "../utility/RGB.h"
 
 class MidiSender : protected BaseMidi {
 public:

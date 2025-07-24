@@ -58,7 +58,8 @@
         "vector": "cpp",
         "memory": "cpp",
         "algorithm": "cpp",
-        "miniaudio.h": "c"
+        "miniaudio.h": "c",
+        "functional": "cpp"
     },
     "C_Cpp.default.cppStandard": "c++20",
 }

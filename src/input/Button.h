@@ -2,7 +2,7 @@
 #define BUTTON
 
 #include "BaseInput.h"
-#include "RGB.h"
+#include "../utility/RGB.h"
 
 class Button : public BaseInput {
 public:

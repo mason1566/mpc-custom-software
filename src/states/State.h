@@ -3,12 +3,13 @@
 
 #include "../commands/Command.h"
 #include "../input/InputEvent.h"
+#include "../MPCContext.h"
 
 #include <memory> // for unique_ptr
 
 class State {
 public:
-    virtual Command* handleInput(const InputEvent& inputEvent) = 0;
+    virtual Command* handleInput(const InputEvent& inputEvent, MPCContext& context) = 0;
     virtual ~State() = default;
 };
 

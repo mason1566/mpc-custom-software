@@ -38,6 +38,9 @@ add_executable(${PROJECT_NAME}
     src/commands/Command.h 
     src/commands/CopyPasteSoundCommand.cpp
     src/commands/MakeSoundCommand.cpp
+    src/commands/SetDrumPadRGBCommand.cpp
+    src/commands/CompositeCommand.h
+    src/commands/ConfigurableCompositeCommand.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE libremidi)

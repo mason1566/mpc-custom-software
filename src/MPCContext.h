@@ -1,12 +1,20 @@
 #ifndef MPC_CONTEXT
 #define MPC_CONTEXT
 
-#include "audio/AudioController.h"
-#include "commands/CommandProcessor.h"
-#include "midi/MidiReceiver.h"
-#include "midi/MidiSender.h"
-#include "input/InputManager.h"
-#include "states/StateManager.h"
+// #include "audio/AudioController.h"
+// #include "commands/CommandProcessor.h"
+// #include "midi/MidiReceiver.h"
+// #include "midi/MidiSender.h"
+// #include "input/InputManager.h"
+// #include "states/StateManager.h"
+
+// Forward declarations
+class AudioController;
+class CommandProcessor;
+class MidiReceiver;
+class MidiSender;
+class InputManager;
+class StateManager;
 
 struct MPCContext {
     AudioController& audio;

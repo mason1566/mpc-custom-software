@@ -8,7 +8,7 @@
 
 class State {
 public:
-    virtual std::unique_ptr<Command> handleInput(const InputEvent& inputEvent) = 0;
+    virtual Command* handleInput(const InputEvent& inputEvent) = 0;
     virtual ~State() = default;
 };
 

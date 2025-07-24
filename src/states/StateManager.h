@@ -4,9 +4,12 @@
 #include "State.h"
 #include "DefaultState.h"
 #include "../commands/CommandProcessor.h"
+#include "../commands/Command.h"
 #include "../input/InputEvent.h"
+#include "../audio/AudioController.h"
 
 #include <stack>
+#include <memory>
 
 // Forward Declaration
 struct MPCContext;
@@ -15,7 +18,7 @@ class StateManager {
 public:
     MPCContext* mpcContext = nullptr;
 
-    StateManager(CommandProcessor& commandProcessor) : commandProcessor(commandProcessor) {}
+    StateManager(CommandProcessor& commandProcessor, AudioController& audio);
 
     void handleEvent(InputEvent& event);
 protected:

@@ -10,7 +10,7 @@ MPC* MPC::Instance() {
 }
 
 /* CONSTRUCTOR */
-MPC::MPC() : commandProcessor(), stateManager(commandProcessor), inputManager(stateManager) {
+MPC::MPC() : commandProcessor(), stateManager(commandProcessor, *audio), inputManager(stateManager) {
     midiSend = MidiSender::Instance();
     midiReceive = MidiReceiver::Instance();
     audio = AudioController::Instance();
@@ -43,7 +43,9 @@ void MPC::Boot() {
     //     midi_send->setPadRGB(i, drumpads[i].getLightColour());
     // }
 
-    while (true) {}
+    while (true) {
+        commandProcessor.tick();
+    }
 };
 
 // void MPC::HandleMidiMessage(MidiInputSignal midiSignal) {

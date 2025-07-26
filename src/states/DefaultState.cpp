@@ -19,14 +19,15 @@ std::shared_ptr<Command> DefaultState::handleInput(const InputEvent& inputEvent)
             // compositeCommand->pushCommand((Command*)new MakeSoundCommand(context));
 
             // return (Command*) compositeCommand;
-            InputManager& input = InputManager::instance();
             DrumPad& drumpad = *input.drum_map[inputEvent.midiValue];
             drumpad.setLightOn();
-            std::shared_ptr<Command> command = std::make_shared<SetDrumPadRGBCommand>(drumpad.padNumber, drumpad.getLightColour());
-            return command;
+            std::shared_ptr<ConfigurableCompositeCommand> commands = std::make_shared<ConfigurableCompositeCommand>();
+            commands->pushCommand(std::make_shared<SetDrumPadRGBCommand>(drumpad.padNumber, drumpad.getLightColour()));
+            commands->pushCommand(std::make_shared<MakeSoundCommand>());
+            // std::shared_ptr<Command> command = std::make_shared<SetDrumPadRGBCommand>(drumpad.padNumber, drumpad.getLightColour());
+            return commands;
         }
         else if (inputEvent.inputSignal == InputSignal::DRUMPAD_UP) {
-            InputManager& input = InputManager::instance();
             DrumPad& drumpad = *input.drum_map[inputEvent.midiValue];
             drumpad.setLightOff();
             std::shared_ptr<Command> command = std::make_shared<SetDrumPadRGBCommand>(drumpad.padNumber, drumpad.getLightColour());

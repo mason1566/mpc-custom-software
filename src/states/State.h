@@ -6,10 +6,15 @@
 
 #include <memory>
 
+enum class StateAction { None, Pop /* , Push, Clear */};
+
 class State {
 public:
-    virtual void handleInput(const InputEvent& inputEvent) = 0;
+    virtual StateAction handleInput(const InputEvent& inputEvent);
     virtual ~State() = default;
+protected:
+    virtual StateAction handleDrumPadInput(const InputEvent& inputEvent) = 0;
+    virtual StateAction handleButtonInput(const InputEvent& inputEvent) = 0;
 };
 
 #endif

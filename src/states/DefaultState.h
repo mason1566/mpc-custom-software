@@ -8,11 +8,14 @@
 
 class DefaultState : protected State {
 public:
-    void handleInput(const InputEvent& inputEvent);
-    DefaultState(MidiSender& midiSend, InputManager& input) : midiSend(midiSend), input(input) {}
+    StateAction handleInput(const InputEvent& inputEvent) override;
+    DefaultState(MidiSender& midiSend, InputManager& input) : midiSend(midiSend), input(input), State() {}
 protected:
     MidiSender& midiSend;
     InputManager& input;
+
+    StateAction handleDrumPadInput(const InputEvent& inputEvent) override;
+    StateAction handleButtonInput(const InputEvent& inputEvent) override;
 };
 
 #endif

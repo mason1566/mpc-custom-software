@@ -18,8 +18,12 @@ public:
     int getGreen() const { return _green; };
     int getBlue() const { return _blue; };
 
+    // Operator Overloads
     RGB operator*(float value) const;
     RGB operator*(int value) const;
+    
+    // Member Functions
+    RGB fadeTo(RGB& toColour, float percentage);
 
 // Static Variables
     static int MAX_VALUE;
@@ -37,6 +41,7 @@ protected:
 
 // Protected Member Functions
     static int normalizeColourValue(int colourValue);
+    static float normalizePercentage(float colourPercent);
 };
 
 #endif

@@ -11,6 +11,32 @@ RGB RGB::BLUE { 0, 0, 127 };
 int RGB::MIN_VALUE { 0 };
 int RGB::MAX_VALUE { 127 };
 
+RGB RGB::operator*(float value) const {
+    if (value < 0) value = 0.0f;
+    else if (value > 1) value = 1.0f;
+
+    int newRed = getRed() * value;
+    int newGreen = getGreen() * value;
+    int newBlue = getBlue() * value;
+
+    RGB newColour { newRed, newGreen, newBlue };
+    return newColour;
+};
+
+RGB RGB::operator*(int value) const {
+    if (value < RGB::MIN_VALUE) value = RGB::MIN_VALUE;
+    else if (value > RGB::MAX_VALUE) value = RGB::MAX_VALUE;
+
+    float percentage = (float)value / RGB::MAX_VALUE;
+
+    int newRed = getRed() * percentage;
+    int newGreen = getGreen() * percentage;
+    int newBlue = getBlue() * percentage;
+
+    RGB newColour { newRed, newGreen, newBlue };
+    return newColour;
+};
+
 /* CONSTRUCTORS */
 // RGB colour Constructor using float Percentage values between 0 and 1 (inclusive)
 RGB::RGB(float redPercent, float greenPercent, float bluePercent) {

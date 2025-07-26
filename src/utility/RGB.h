@@ -18,6 +18,9 @@ public:
     int getGreen() const { return _green; };
     int getBlue() const { return _blue; };
 
+    RGB operator*(float value) const;
+    RGB operator*(int value) const;
+
 // Static Variables
     static int MAX_VALUE;
     static int MIN_VALUE;

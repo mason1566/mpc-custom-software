@@ -5,7 +5,7 @@ class Command {
 public:
     virtual void Execute() = 0;
     // virtual void Undo();
-    Command() = default;
+    Command() {}
     virtual ~Command() = default;
 };
 

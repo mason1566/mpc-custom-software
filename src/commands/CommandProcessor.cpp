@@ -1,17 +1,24 @@
 #include "CommandProcessor.h"
 
-void CommandProcessor::enqueueCommand(Command* command) {
+// #include <iostream>
+#include "../input/InputManager.h"
+
+CommandProcessor& CommandProcessor::instance() {
+    static CommandProcessor instance;
+    return instance;
+};
+
+CommandProcessor::CommandProcessor() : input(InputManager::instance()) {}
+
+void CommandProcessor::enqueueCommand(std::shared_ptr<Command> command) {
     commandQueue.push(command);
 };
 
 void CommandProcessor::tick() {
     if (commandQueue.size() > 0) {
-        Command* command = commandQueue.front();
-        commandQueue.pop(); // remove the command from the queue
-
-        // Execute the command
+        std::shared_ptr<Command> command = commandQueue.front();
+        commandQueue.pop();
         command->Execute();
-        delete command;
-        command = nullptr;
+        // std::cout << "Command Queue Size: " << commandQueue.size() << std::endl;
     }
 };

@@ -7,12 +7,10 @@ class AudioController {
 public:
     void MakeSound();
 
-    static AudioController* Instance();
+    static AudioController& instance();
 protected:
     ma_result result;
     ma_engine engine;
-
-    static AudioController* _instance;
 
     AudioController();
     ~AudioController();

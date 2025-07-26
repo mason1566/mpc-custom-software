@@ -5,10 +5,8 @@
 
 class DefaultState : public State {
 public:
-    Command* handleInput(const InputEvent& inputEvent, MPCContext& context);
-    DefaultState(AudioController& audio) : audio(audio) {}
-protected:
-    AudioController& audio;
+    std::shared_ptr<Command> handleInput(const InputEvent& inputEvent);
+    DefaultState() : State() {}
 };
 
 #endif

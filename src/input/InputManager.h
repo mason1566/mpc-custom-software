@@ -5,11 +5,14 @@
 #include "Button.h"
 #include "DrumPad.h"
 #include "InputEvent.h"
-#include "../states/StateManager.h"
 
 #include <libremidi/libremidi.hpp>
 #include <unordered_map>
+#include <memory>
 
+class StateManager;
+
+// Singleton
 // Holds:
 //   - References to input devices (DrumPad, Button, etc.).
 //   - Reference to StateManager (to dispatch input events).
@@ -28,13 +31,13 @@ public:
     // Member Functions
     void handleMidiMessage(const libremidi::message& message);
 
-    // Constructor
-    InputManager(StateManager& stateManager);
-protected:
-    StateManager& stateManager;
-    
+    static InputManager& instance();
+protected:    
     void setupDrumPads();
     void setupButtons();
+
+    // Constructor
+    InputManager();
 };
 
 #endif

@@ -7,9 +7,7 @@
 class MakeSoundCommand : public Command {
 public:
     void Execute();
-    MakeSoundCommand(AudioController& audio) : audio(audio) {}
-protected:
-    AudioController& audio;
+    MakeSoundCommand() {}
 };
 
 #endif

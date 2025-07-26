@@ -15,13 +15,11 @@ public:
     void setMidiCallbackFunction(std::function<void (const libremidi::message&)> midiCallbackFunc) { midiCallback = midiCallbackFunc; }
 
     // Singleton instance function
-    static MidiReceiver* Instance();
+    static MidiReceiver& instance();
 private:
     MidiReceiver();
 
     std::function<void (const libremidi::message&)> midiCallback = 0;
-
-    static MidiReceiver* _instance;
 };
 
 #endif

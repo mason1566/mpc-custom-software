@@ -5,10 +5,8 @@
 #include <memory>
 
 class BaseMidi {
-protected:
-    static libremidi::observer* getMidiObserver();
-private:
-    static libremidi::observer* _observer;
+public:
+    static libremidi::observer& getMidiObserver();
 };
 
 #endif

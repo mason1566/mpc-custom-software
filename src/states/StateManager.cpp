@@ -1,21 +1,24 @@
 #include "StateManager.h"
 
-#include "../MPCContext.h"
-
 #include <iostream>
 
-StateManager::StateManager(CommandProcessor& commandProcessor, AudioController& audio) : commandProcessor(commandProcessor), defaultState(audio) {}
+#include "../commands/CommandProcessor.h"
+
+StateManager& StateManager::instance() {
+    static StateManager instance;
+    return instance;
+};
 
 void StateManager::handleEvent(InputEvent& event) {
     // std::cout << "Hello from StateManager!\n";
 
     // If the stateStack is empty, defer handling to the default state
-    if (stateStack.size() == 0 && mpcContext) {
-        Command* stateCommand = defaultState.handleInput(event, *mpcContext);
+    if (stateStack.size() == 0) {
+        std::shared_ptr<Command> command = defaultState.handleInput(event);
         
         // If a command is present, push it to the commandProcessor queue
-        if (stateCommand) {
-            commandProcessor.enqueueCommand(stateCommand);
+        if (command) {
+            CommandProcessor::instance().enqueueCommand(command);
         }
     }
 

@@ -10,18 +10,22 @@ MPC* MPC::Instance() {
 }
 
 /* CONSTRUCTOR */
-MPC::MPC() : commandProcessor(), stateManager(commandProcessor, *audio), inputManager(stateManager) {
-    midiSend = MidiSender::Instance();
-    midiReceive = MidiReceiver::Instance();
-    audio = AudioController::Instance();
+MPC::MPC() : midiSend(MidiSender::instance()), 
+             midiReceive(MidiReceiver::instance()),
+             audio(AudioController::instance()),
+             stateManager(StateManager::instance()),
+             commandProcessor(CommandProcessor::instance()),
+             inputManager(InputManager::instance())
+{
+    // midiSend = MidiSender::instance();
+    // midiReceive = MidiReceiver::instance();
+    // audio = AudioController::instance();
+    // stateManager = StateManager::instance();
+    // commandProcessor = CommandProcessor::instance();
+    // inputManager = InputManager::instance();
 
-    // Create mpcContext;
-    mpcContext = new MPCContext{*audio, commandProcessor, *midiReceive, *midiSend, inputManager, stateManager};
 
-    // set the mpcContext in stateManager
-    stateManager.mpcContext = mpcContext;
-
-    midiReceive->setMidiCallbackFunction([&](const libremidi::message& message) {
+    midiReceive.setMidiCallbackFunction([&](const libremidi::message& message) {
         inputManager.handleMidiMessage(std::move(message));
     });
     // auto midiCallback = [this](MidiInputSignal message) { HandleMidiMessage(message); };

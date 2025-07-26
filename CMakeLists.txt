@@ -6,7 +6,6 @@ add_subdirectory(3rdparty/libremidi)
 add_executable(${PROJECT_NAME} 
     src/main.cpp 
     src/MPC.cpp
-    src/MPCContext.h
 
     # AUDIO
     src/audio/miniaudio.c 

@@ -1,11 +1,9 @@
 #include "MidiReceiver.h"
 
-MidiReceiver* MidiReceiver::_instance = nullptr;
 
-MidiReceiver* MidiReceiver::Instance() {
-    if (!_instance)
-        _instance = new MidiReceiver;
-    return _instance;
+MidiReceiver& MidiReceiver::instance() {
+    static MidiReceiver instance;
+    return instance;
 }
 
 MidiReceiver::MidiReceiver() {
@@ -19,5 +17,5 @@ MidiReceiver::MidiReceiver() {
         libremidi::input_configuration{ .on_message = callback }
     );
 
-    midi_in->open_port(getMidiObserver()->get_input_ports()[0]);
+    midi_in->open_port(getMidiObserver().get_input_ports()[0]);
 }

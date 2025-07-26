@@ -4,15 +4,12 @@
 #include "Command.h"
 #include "../midi/MidiSender.h"
 #include "../utility/RGB.h"
-#include "../input/DrumPad.h"
 
 class SetDrumPadRGBCommand : public Command {
 public:
     void Execute();
-    SetDrumPadRGBCommand(MidiSender& midiSend, int padNumber, RGB colour) : midiSend(midiSend), padNumber(padNumber), colour(colour) {}
-    // SetDrumPadRGBCommand(MidiSender& midiSend, DrumPad& drumpad) : midiSend(midiSend),  drumpad(drumpad), colour(drumpad.getLightColour()) {}
+    SetDrumPadRGBCommand(int padNumber, RGB colour) : padNumber(padNumber), colour(colour) {}
 protected:
-    MidiSender& midiSend;
     int padNumber;
     RGB colour;
 };

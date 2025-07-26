@@ -1,12 +1,9 @@
 #include "AudioController.h"
 
 // Singleton Pattern
-AudioController* AudioController::_instance = nullptr;
-
-AudioController* AudioController::Instance() {
-    if (!_instance)
-        _instance = new AudioController;
-    return _instance;
+AudioController& AudioController::instance() {
+    static AudioController instance;
+    return instance;
 }
 
 // Constructor

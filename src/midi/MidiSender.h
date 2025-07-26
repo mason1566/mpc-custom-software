@@ -9,13 +9,11 @@ public:
     void setPadRGB(int padNumber, RGB colour);
 
     // Singleton instance function
-    static MidiSender* Instance();
+    static MidiSender& instance();
 private:
     libremidi::midi_out midi_out;
 
     MidiSender();
-
-    static MidiSender* _instance;
 };
 
 #endif

@@ -1,15 +1,14 @@
 #include "MidiSender.h"
 
-MidiSender* MidiSender::_instance = nullptr;
+#include <iostream>
 
-MidiSender* MidiSender::Instance() {
-    if (!_instance)
-        _instance = new MidiSender;
-    return _instance;
+MidiSender& MidiSender::instance() {
+    static MidiSender instance;
+    return instance;
 }
 
 MidiSender::MidiSender() {
-    midi_out.open_port(getMidiObserver()->get_output_ports()[0]);
+    midi_out.open_port(getMidiObserver().get_output_ports()[0]);
 }
 
 void MidiSender::setPadRGB(int padNumber, RGB colour) {
@@ -21,6 +20,7 @@ void MidiSender::setPadRGB(int padNumber, RGB colour) {
     // We are only interested in modifying the PAD_NUM, RED_VALUE, GREEN_VALUE, and BLUE_VALUE.
     
     // Convert colour values into unsigned char. This is because midi_out.send_message expects unsigned char values
+
     unsigned char padNum = static_cast<unsigned char>(padNumber);
     unsigned char red = static_cast<unsigned char>(colour.getRed());
     unsigned char green = static_cast<unsigned char>(colour.getGreen());

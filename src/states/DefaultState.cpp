@@ -3,11 +3,36 @@
 
 #include "../commands/ConfigurableCompositeCommand.h"
 #include "../commands/SetDrumPadRGBCommand.h"
+#include "../commands/MakeSoundCommand.h"
+#include "../input/InputManager.h"
 
 
-Command* DefaultState::handleInput(const InputEvent& inputEvent, MPCContext& context) {
+std::shared_ptr<Command> DefaultState::handleInput(const InputEvent& inputEvent) {
     // std::cout << "Hello!" << std::endl;
-    SetDrumPadRGBCommand* setRGB = new SetDrumPadRGBCommand { context.midiSend, 0, RGB::BLUE };
+    // SetDrumPadRGBCommand* setRGB = new SetDrumPadRGBCommand { context.midiSend, 0, RGB::BLUE };
+    if (inputEvent.inputType == InputType::DRUMPAD_INPUT) {
+        if (inputEvent.inputSignal == InputSignal::DRUMPAD_DOWN) {
+            // DrumPad& drumpad = *(context.inputManager->drum_map[inputEvent.midiValue]);
 
-    return (Command*)setRGB;
+            // ConfigurableCompositeCommand* compositeCommand = new ConfigurableCompositeCommand { context };
+            // compositeCommand->pushCommand((Command*)new SetDrumPadRGBCommand(drumpad.padNumber, drumpad.getLightColour(), context));
+            // compositeCommand->pushCommand((Command*)new MakeSoundCommand(context));
+
+            // return (Command*) compositeCommand;
+            InputManager& input = InputManager::instance();
+            DrumPad& drumpad = *input.drum_map[inputEvent.midiValue];
+            drumpad.setLightOn();
+            std::shared_ptr<Command> command = std::make_shared<SetDrumPadRGBCommand>(drumpad.padNumber, drumpad.getLightColour());
+            return command;
+        }
+        else if (inputEvent.inputSignal == InputSignal::DRUMPAD_UP) {
+            InputManager& input = InputManager::instance();
+            DrumPad& drumpad = *input.drum_map[inputEvent.midiValue];
+            drumpad.setLightOff();
+            std::shared_ptr<Command> command = std::make_shared<SetDrumPadRGBCommand>(drumpad.padNumber, drumpad.getLightColour());
+            return command;
+        }
+    }
+
+    return nullptr;
 }; 

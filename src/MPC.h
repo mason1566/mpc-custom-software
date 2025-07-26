@@ -9,9 +9,9 @@
 #include "states/StateManager.h"
 #include "commands/CommandProcessor.h"
 #include "input/InputManager.h"
-#include "MPCContext.h"
 
 #include <vector>
+#include <memory>
 #include <iomanip>
 #include <iostream>
 
@@ -20,14 +20,13 @@
 // MPC wires up connections via callback functions and lets the objects handle the rest
 class MPC {
 public:
-    MidiSender* midiSend = nullptr;
-    MidiReceiver* midiReceive = nullptr;
-    AudioController* audio = nullptr;
-    StateManager stateManager;
-    CommandProcessor commandProcessor;
-    InputManager inputManager;
+    MidiSender& midiSend;
+    MidiReceiver& midiReceive;
+    AudioController& audio;
+    StateManager& stateManager;
+    CommandProcessor& commandProcessor;
+    InputManager& inputManager;
 
-    MPCContext* mpcContext = nullptr;
 
     void Boot();
 

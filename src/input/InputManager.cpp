@@ -2,19 +2,18 @@
 
 #include <iostream>
 
-#include "../states/StateManager.h"
-
-InputManager& InputManager::instance() {
-    static InputManager instance;
-    return instance;
-};
-
-
-InputManager::InputManager()
-{   
+InputManager::InputManager() {   
     setupDrumPads();
     setupButtons();
 }
+
+int InputManager::getDrumPadNumber(int midiNote) {
+    DrumPad* drumpad = drum_map[midiNote];
+    if (drumpad) 
+        return drumpad->padNumber;
+    return INVALID_IDENTIFIER;
+}
+
 
 void InputManager::handleMidiMessage(const libremidi::message& message) {
     // std::cout << "Input Detected in InputManager!\n";
@@ -58,9 +57,9 @@ void InputManager::handleMidiMessage(const libremidi::message& message) {
     }
 
     // If the input is recognized, delegate the input event information to the State Manager.
-    if (recognizedInput) {
+    if (recognizedInput && inputCallback) {
         InputEvent inputEvent { signalCode, midiValue, velocity, inputType, inputSignal };
-        StateManager::instance().handleEvent(inputEvent); // Delegate responsibility to the stateManager object
+        inputCallback(inputEvent); // Delegate responsibility to the stateManager object
     }
 
 }

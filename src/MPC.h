@@ -7,7 +7,6 @@
 #include "midi/MidiReceiver.h"
 #include "audio/AudioController.h"
 #include "states/StateManager.h"
-#include "commands/CommandProcessor.h"
 #include "input/InputManager.h"
 
 #include <vector>
@@ -23,9 +22,8 @@ public:
     MidiSender& midiSend;
     MidiReceiver& midiReceive;
     AudioController& audio;
-    StateManager& stateManager;
-    CommandProcessor& commandProcessor;
-    InputManager& inputManager;
+    StateManager stateManager;
+    InputManager inputManager;
 
 
     void Boot();

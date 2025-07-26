@@ -13,9 +13,8 @@ MPC* MPC::Instance() {
 MPC::MPC() : midiSend(MidiSender::instance()), 
              midiReceive(MidiReceiver::instance()),
              audio(AudioController::instance()),
-             stateManager(StateManager::instance()),
-             commandProcessor(CommandProcessor::instance()),
-             inputManager(InputManager::instance())
+             inputManager(),
+             stateManager(audio, midiSend, inputManager)
 {
     // midiSend = MidiSender::instance();
     // midiReceive = MidiReceiver::instance();
@@ -23,10 +22,16 @@ MPC::MPC() : midiSend(MidiSender::instance()),
     // stateManager = StateManager::instance();
     // commandProcessor = CommandProcessor::instance();
     // inputManager = InputManager::instance();
-
+    // StateManager& stateManager { audio, midiSend, inputManager };
 
     midiReceive.setMidiCallbackFunction([&](const libremidi::message& message) {
-        inputManager.handleMidiMessage(std::move(message));
+        // std::cout << "Wiring midi events!\n";
+        inputManager.handleMidiMessage(message);
+    });
+
+    inputManager.setInputEventCallback([&](const InputEvent& inputEvent) {
+        // std::cout << "Wiring input events!\n";
+        stateManager.handleEvent(inputEvent);
     });
     // auto midiCallback = [this](MidiInputSignal message) { HandleMidiMessage(message); };
     // midi_receive->setMidiCallbackFunction(midiCallback);
@@ -48,7 +53,7 @@ void MPC::Boot() {
     // }
 
     while (true) {
-        commandProcessor.tick();
+
     }
 };
 

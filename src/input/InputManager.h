@@ -9,8 +9,7 @@
 #include <libremidi/libremidi.hpp>
 #include <unordered_map>
 #include <memory>
-
-class StateManager;
+#include <functional>
 
 // Singleton
 // Holds:
@@ -28,16 +27,19 @@ public:
     std::unordered_map<int, Button*> button_map;
     std::unordered_map<int, DrumPad*> drum_map;
 
+    const int INVALID_IDENTIFIER = 0;
+
     // Member Functions
     void handleMidiMessage(const libremidi::message& message);
+    int getDrumPadNumber(int midiNote);
+    void setInputEventCallback(std::function<void (const InputEvent&)> inputCallbackFunc) { inputCallback = inputCallbackFunc; }
 
-    static InputManager& instance();
+    InputManager();
 protected:    
     void setupDrumPads();
     void setupButtons();
 
-    // Constructor
-    InputManager();
+    std::function<void (const InputEvent&)> inputCallback = 0;
 };
 
 #endif

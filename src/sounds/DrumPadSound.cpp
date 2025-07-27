@@ -1,7 +1,7 @@
 #include "DrumPadSound.h"
 
 DrumPadSound::DrumPadSound(std::vector<SoundSet>& soundSets, int soundSetIndex, int soundIndex)
-    : soundSets(soundSets)
+    : soundSets(soundSets), soundSetIndex(soundSetIndex), soundIndex(soundIndex)
 {
     // Handle invalid indexes
     if (soundSetIndex >= soundSets.size() || soundSetIndex < 0) {

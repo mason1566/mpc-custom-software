@@ -31,11 +31,13 @@ void AudioController::MakeSound(DrumPad& drumpad) {
 }
 
 void AudioController::MakeSound() {
+    std::cout << "Making Sound!\n";
     ma_engine_play_sound(&engine, "../src/sounds/Blood Snare.wav", NULL);
 };
 
 void AudioController::PlaySound(SoundFile& sound) {
     // std::cout << sound->name << std::endl;
+    // std::cout << "Playing Sound!\n";
     ma_engine_play_sound(&engine, sound.getPath().string().c_str(), NULL);
 }
 

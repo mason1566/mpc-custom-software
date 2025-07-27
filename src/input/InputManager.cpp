@@ -139,7 +139,10 @@ void InputManager::setupButtons() {
 }
 
 void InputManager::setupDrumPadSounds(std::vector<SoundSet>& soundSets) {
-    for (SoundSet& soundSet : soundSets) {
-        std::cout << soundSet.getName() << std::endl;
+    int defaultLibrarySize = soundSets[0].size();
+    for (int i = 0; i < drumpads.size(); i++) {
+        if (i < defaultLibrarySize) {
+            drumpads[i].sound = std::make_unique<DrumPadSound>(soundSets, 0, i);
+        }
     }
 };

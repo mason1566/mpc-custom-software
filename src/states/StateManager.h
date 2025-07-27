@@ -21,7 +21,7 @@ public:
     void handleEvent(const InputEvent& event);
     void tick();
 
-    StateManager(AudioController& audio, MidiSender& midiSend, InputManager& input) : audio(audio), midiSend(midiSend), input(input), defaultState(midiSend, input), eventQueue() {}
+    StateManager(AudioController& audio, MidiSender& midiSend, InputManager& input) : audio(audio), midiSend(midiSend), input(input), defaultState(midiSend, input, *this), eventQueue() {}
 protected:
     std::stack<State*> stateStack;
     DefaultState defaultState;

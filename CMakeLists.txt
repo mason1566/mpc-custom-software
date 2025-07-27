@@ -31,6 +31,7 @@ add_executable(${PROJECT_NAME}
     src/states/StateManager.cpp
     src/states/State.cpp 
     src/states/DefaultState.cpp
+    src/states/CopyPasteRGBState.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE libremidi)

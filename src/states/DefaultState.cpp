@@ -90,6 +90,12 @@ StateAction DefaultState::handleButtonInput(const InputEvent& inputEvent) {
                 }
                 break;
             }
+            case MPC_CONSTANTS::BUTTON_MIDI_VALUES::FULL_LEVEL:
+            {
+                State* turnOnPadsState = (State*) new TurnOnAllPadsState(midiSend, input, stateManager);
+                stateManager.pushState(turnOnPadsState);
+                turnOnPadsState->handleInput(inputEvent);
+            }
             case MPC_CONSTANTS::BUTTON_MIDI_VALUES::MINUS:
             {
                 if (activeDrumPad) {

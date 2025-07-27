@@ -11,7 +11,7 @@ public:
 
     std::string getName() { return name; }
     void setName(std::string name) { name = name; }
-    SoundFile getSoundFile(int index) const;
+    SoundFile& getSoundFile(int index);
     void addSoundFile(SoundFile sound) { soundFiles.push_back(sound); }
     size_t size() { return soundFiles.size(); }
     // void removeSound(Sound* sound);

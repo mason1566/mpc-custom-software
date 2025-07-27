@@ -40,14 +40,14 @@ StateAction TurnOnAllPadsState::handleButtonInput(const InputEvent& inputEvent) 
 };
 
 void TurnOnAllPadsState::turnOffAllDrumPads() {
-    for (DrumPad drumpad : input.drumpads) {
+    for (DrumPad& drumpad : input.drumpads) {
         drumpad.setLightOff();
         midiSend.setPadRGB(drumpad.padNumber, drumpad.getLightColour());
     }
 };
 
 void TurnOnAllPadsState::turnOnAllDrumPads() {
-    for (DrumPad drumpad : input.drumpads) {
+    for (DrumPad& drumpad : input.drumpads) {
         drumpad.setLightOn();
         midiSend.setPadRGB(drumpad.padNumber, drumpad.getLightColour());
     }

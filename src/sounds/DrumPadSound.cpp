@@ -12,4 +12,8 @@ DrumPadSound::DrumPadSound(std::vector<SoundSet>& soundSets, int soundSetIndex, 
         std::string msg { "DrumPadSound::DrumPadSound(): Invalid Parameter: soundIndex = " + soundSetIndex };
         throw std::invalid_argument(msg);
     }
-}
+};
+
+SoundFile& DrumPadSound::getSound() {
+    return soundSets[soundSetIndex].getSoundFile(soundIndex);
+};

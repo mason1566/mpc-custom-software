@@ -3,14 +3,16 @@
 
 #include "BaseInput.h"
 #include "../utility/RGB.h"
+#include "../sounds/DrumPadSound.h"
+
+#include <memory>
 
 class DrumPad : public BaseInput {
 public:
     int padNumber; // MPC signals involving drumpad use idCode for incoming and padNumber for outgoing
     bool isLightOn = true;
     int velocity = 0;
-    // SoundSet* soundSet = nullptr;
-    // int soundIndex = 0;
+    std::unique_ptr<DrumPadSound> sound = nullptr;
     RGB _lightColour;
 
     DrumPad(int midiValue, int padNum) : BaseInput(midiValue), padNumber(padNum), _lightColour(RGB::WHITE) {}

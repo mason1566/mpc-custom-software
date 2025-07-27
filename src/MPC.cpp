@@ -15,7 +15,8 @@ MPC::MPC()
     midiReceive(MidiReceiver::instance()),
     audio(AudioController::instance()),
     inputManager(),
-    stateManager(audio, midiSend, inputManager)
+    stateManager(audio, midiSend, inputManager),
+    soundLibrary()
 {
     midiReceive.setMidiCallbackFunction([&](const libremidi::message& message) {
         inputManager.handleMidiMessage(message);

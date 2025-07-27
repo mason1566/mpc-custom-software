@@ -8,6 +8,7 @@
 #include "audio/AudioController.h"
 #include "states/StateManager.h"
 #include "input/InputManager.h"
+#include "sounds/SoundLibrary.h"
 
 #include <vector>
 #include <memory>
@@ -24,6 +25,7 @@ public:
     AudioController& audio;
     StateManager stateManager;
     InputManager inputManager;
+    SoundLibrary soundLibrary;
 
 
     void Boot();

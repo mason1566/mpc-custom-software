@@ -10,7 +10,10 @@ add_executable(${PROJECT_NAME}
     # AUDIO
     src/audio/miniaudio.c 
     src/audio/AudioController.cpp 
+
     src/sounds/Sound.cpp
+    src/sounds/SoundSet.cpp
+    src/sounds/SoundLibrary.cpp
 
     # INPUT
     src/input/InputManager.cpp

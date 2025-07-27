@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-InputManager::InputManager() {   
-    setupDrumPads();
-    setupButtons();
+InputManager::InputManager(SoundLibrary& sounds) : sounds(sounds) {   
+    // setupDrumPads();
+    // setupButtons();
 }
 
 int InputManager::getDrumPadNumber(int midiNote) {
@@ -68,7 +68,7 @@ void InputManager::handleMidiMessage(const libremidi::message& message) {
 void InputManager::setupDrumPads() {
     // add drumpads to the vector
     for (int i = 0; i < MPC_CONSTANTS::DRUMPAD_COUNT; i++) {
-        drumpads.push_back( DrumPad { MPC_CONSTANTS::DRUMPAD_MIDI_VALUES[i], i } );
+        drumpads.push_back( DrumPad { MPC_CONSTANTS::DRUMPAD_MIDI_VALUES[i], i, *sounds.sounds[i] } );
     }
 
     // Set initial colour of drumpads
@@ -80,6 +80,16 @@ void InputManager::setupDrumPads() {
         drumpads[i].setLightColour(padColour);
         percent += step;
     }
+
+    // Set the initial sounds of pads
+    // for (DrumPad pad : drumpads) {
+    //     pad.sound = sounds.sounds[0];
+    // }
+    // for (int i = 0; i < drumpads.size(); i++) {
+    //     if (sounds.sounds[i])
+    //         drumpads[i].sound = sounds.sounds[i];
+    // }
+    // std::cout << sounds.sounds.size() << std::endl;
 
     // Add drumpads to input_map and drum_map
     for (int i = 0; i < drumpads.size(); i++) {

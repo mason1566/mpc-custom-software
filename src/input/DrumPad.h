@@ -10,9 +10,9 @@ public:
     int padNumber; // MPC signals involving drumpad use idCode for incoming and padNumber for outgoing
     bool isLightOn = true;
     int velocity = 0;
-    Sound* sound = nullptr;
+    Sound& sound;
 
-    DrumPad(int midiValue, int padNum) : BaseInput(midiValue), padNumber(padNum), _lightColour(RGB::WHITE) {}
+    DrumPad(int midiValue, int padNum, Sound& sound) : BaseInput(midiValue), padNumber(padNum), _lightColour(RGB::WHITE), sound(sound) {}
     void setLightColour(RGB colour) { _lightColour = colour; }
     RGB getLightColour();
     void toggleLight();

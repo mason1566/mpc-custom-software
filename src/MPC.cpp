@@ -11,12 +11,12 @@ MPC* MPC::Instance() {
 
 /* CONSTRUCTOR */
 MPC::MPC() 
-  : midiSend(MidiSender::instance()), 
+  : soundLibrary(),
+    midiSend(MidiSender::instance()), 
     midiReceive(MidiReceiver::instance()),
     audio(AudioController::instance()),
-    inputManager(),
-    stateManager(audio, midiSend, inputManager),
-    soundLibrary()
+    inputManager(soundLibrary),
+    stateManager(audio, midiSend, inputManager)
 {
     midiReceive.setMidiCallbackFunction([&](const libremidi::message& message) {
         inputManager.handleMidiMessage(message);
@@ -25,6 +25,11 @@ MPC::MPC()
     inputManager.setInputEventCallback([&](const InputEvent& inputEvent) {
         stateManager.handleEvent(inputEvent);
     });
+
+    inputManager.setupButtons();
+    inputManager.setupDrumPads();
+
+    // std::cout << (*soundLibrary.sounds[0]).name << std::endl;
 
     // Turn on Pad Mute Button light
     // unsigned char message[] { MPC_CONSTANTS::MIDI_MESSAGES::MIDI_CONTROL_CHANGE, 4, 3 };

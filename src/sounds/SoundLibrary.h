@@ -6,11 +6,13 @@
 
 #include <filesystem>
 #include <vector>
+#include <unordered_map>
 
 class SoundLibrary {
 public:
     std::vector<Sound*> sounds;
     std::vector<SoundSet> soundCategories;
+    std::unordered_map<std::string, SoundSet*> soundCategoryMap;
     
     // void addCategory(SoundSet sounds) { soundCategories.push_back(sounds); }
     // void removeCategory(SoundSet sounds);

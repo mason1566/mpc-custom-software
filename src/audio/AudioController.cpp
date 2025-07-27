@@ -1,5 +1,7 @@
 #include "AudioController.h"
 
+#include <iostream>
+
 // Singleton Pattern
 AudioController& AudioController::instance() {
     static AudioController instance;
@@ -24,5 +26,6 @@ void AudioController::MakeSound() {
 };
 
 void AudioController::PlaySound(Sound& sound) {
+    // std::cout << sound.name << std::endl;
     ma_engine_play_sound(&engine, sound.path.string().c_str(), NULL);
 }

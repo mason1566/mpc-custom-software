@@ -18,16 +18,22 @@ SoundLibrary::SoundLibrary() {
         }
     }
 
+    // Create a soundset for each sound directory and add sounds from that directory
     for (const auto& dir : soundDirectories) {
-        SoundSet(dir.lexically_normal().filename().string()); // lexically_normal removes the trailing slash (if present). This is because trailing slashes cause an emptry string to be returned instead
+        SoundSet soundSet { dir.lexically_normal().filename().string() }; // lexically_normal removes the trailing slash (if present). This is because trailing slashes cause an emptry string to be returned instead
 
         for (const auto& file : std::filesystem::directory_iterator(dir)) {
             if (file.is_regular_file()) {
                 auto ext = file.path().extension().string();
                 if (ext == ".wav" || ext == ".mp3" || ext == ".flac") {
-                    std::cout << file.path() << std::endl;
+                    Sound* sound = new Sound { file.path(), file.path().filename().string() };
+                    soundSet.addSound(sound);
+                    sounds.push_back(sound);
+                    // std::cout << sound.path.string() << std::endl;
                 }
             }
         }
+        soundCategories.push_back(soundSet);
+        soundCategoryMap[soundSet.name] = &soundSet;
     }
 };

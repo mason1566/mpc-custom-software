@@ -22,3 +22,7 @@ AudioController::~AudioController() {
 void AudioController::MakeSound() {
     ma_engine_play_sound(&engine, "../src/sounds/Blood Snare.wav", NULL);
 };
+
+void AudioController::PlaySound(Sound& sound) {
+    ma_engine_play_sound(&engine, sound.path.string().c_str(), NULL);
+}

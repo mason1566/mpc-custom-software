@@ -22,7 +22,7 @@ public:
     void tick();
     void pushState(State* state) { stateStack.push(state); }
 
-    StateManager(AudioController& audio, MidiSender& midiSend, InputManager& input) : audio(audio), midiSend(midiSend), input(input), defaultState(midiSend, input, *this), eventQueue() {}
+    StateManager(AudioController& audio, MidiSender& midiSend, InputManager& input) : audio(audio), midiSend(midiSend), input(input), defaultState(midiSend, input, *this, audio), eventQueue() {}
 protected:
     std::stack<State*> stateStack;
     DefaultState defaultState;

@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#include "StateManager.h"
+#include "CopyPasteRGBState.h"
+
 StateAction DefaultState::handleInput(const InputEvent& inputEvent) {
     State::handleInput(inputEvent);
     return StateAction::None;
@@ -10,6 +13,8 @@ StateAction DefaultState::handleInput(const InputEvent& inputEvent) {
 StateAction DefaultState::handleDrumPadInput(const InputEvent& inputEvent) {
     DrumPad* drumpad = input.drum_map[inputEvent.midiValue];
 
+    if (!drumpad) return StateAction::Error;
+    
     switch (inputEvent.inputSignal) 
     {
         case InputSignal::DRUMPAD_DOWN:
@@ -39,5 +44,12 @@ StateAction DefaultState::handleDrumPadInput(const InputEvent& inputEvent) {
 };
 
 StateAction DefaultState::handleButtonInput(const InputEvent& inputEvent) {
+    switch (inputEvent.midiValue) {
+        case MPC_CONSTANTS::BUTTON_MIDI_VALUES::COPY:
+        {
+            State* copyPasteState = (State*) new CopyPasteRGBState(midiSend, input);
+            stateManager.pushState(copyPasteState);
+        }
+    }
     return StateAction::None;
 };

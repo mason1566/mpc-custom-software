@@ -6,7 +6,7 @@
 
 #include <memory>
 
-enum class StateAction { None, Pop /* , Push, Clear */};
+enum class StateAction { None, Pop, Error /* , Push, Clear */};
 
 class State {
 public:

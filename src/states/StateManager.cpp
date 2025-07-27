@@ -16,7 +16,7 @@ void StateManager::handleEvent(const InputEvent& event) {
     
 void StateManager::tick() {
     if (!eventQueue.empty()) {
-        const InputEvent& event = eventQueue.front();
+        const InputEvent event = eventQueue.front();
         eventQueue.pop();
 
         StateAction stateResponse;

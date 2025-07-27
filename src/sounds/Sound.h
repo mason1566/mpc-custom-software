@@ -11,6 +11,7 @@ public:
     float duration;
     float startTime;
     float endTime;
+    float volume = 1.0f;
 
     Sound(std::filesystem::path path, std::string name, float duration, float startTime, float endTime) : path(path), name(name), duration(duration), startTime(startTime), endTime(endTime) {}
 };

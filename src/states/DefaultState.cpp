@@ -4,6 +4,7 @@
 
 #include "StateManager.h"
 #include "CopyPasteRGBState.h"
+#include "TurnOnAllPadsState.h"
 
 StateAction DefaultState::handleInput(const InputEvent& inputEvent) {
     // Defer input events to their specific handler function
@@ -49,13 +50,31 @@ StateAction DefaultState::handleDrumPadInput(const InputEvent& inputEvent) {
 };
 
 StateAction DefaultState::handleButtonInput(const InputEvent& inputEvent) {
-    switch (inputEvent.midiValue) {
-        case MPC_CONSTANTS::BUTTON_MIDI_VALUES::COPY:
+    // switch (inputEvent.midiValue) {
+    //     case MPC_CONSTANTS::BUTTON_MIDI_VALUES::COPY:
+    //     {
+    //         if (inputEvent.inputSignal == InputSignal::BUTTON_DOWN && activeDrumPad) {
+    //             State* copyPasteState = (State*) new CopyPasteRGBState(midiSend, input, stateManager, activeDrumPad);
+    //             stateManager.pushState(copyPasteState);
+    //         }
+    //     }
+    // }
+    switch (inputEvent.inputSignal) {
+        case InputSignal::BUTTON_DOWN:
         {
-            if (inputEvent.inputSignal == InputSignal::BUTTON_DOWN && activeDrumPad) {
+            if (inputEvent.midiValue == MPC_CONSTANTS::BUTTON_MIDI_VALUES::COPY && activeDrumPad) {
                 State* copyPasteState = (State*) new CopyPasteRGBState(midiSend, input, stateManager, activeDrumPad);
                 stateManager.pushState(copyPasteState);
             }
+            else if (inputEvent.midiValue == MPC_CONSTANTS::BUTTON_MIDI_VALUES::FULL_LEVEL) {
+                State* turnOnPadsState = (State*) new TurnOnAllPadsState(midiSend, input, stateManager);
+                stateManager.pushState(turnOnPadsState);
+                turnOnPadsState->handleInput(inputEvent);
+            }
+        }
+        default:
+        {
+            break;
         }
     }
     return StateAction::None;

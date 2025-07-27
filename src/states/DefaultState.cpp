@@ -52,7 +52,7 @@ StateAction DefaultState::handleButtonInput(const InputEvent& inputEvent) {
     switch (inputEvent.midiValue) {
         case MPC_CONSTANTS::BUTTON_MIDI_VALUES::COPY:
         {
-            if (activeDrumPad && inputEvent.inputSignal == InputSignal::BUTTON_DOWN) {
+            if (inputEvent.inputSignal == InputSignal::BUTTON_DOWN && activeDrumPad) {
                 State* copyPasteState = (State*) new CopyPasteRGBState(midiSend, input, stateManager, activeDrumPad);
                 stateManager.pushState(copyPasteState);
             }

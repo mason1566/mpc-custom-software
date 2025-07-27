@@ -138,12 +138,8 @@ void InputManager::setupButtons() {
     }
 }
 
-void InputManager::setupDrumPadSounds() {
-    // int soundCounter = 0;
-    // for (DrumPad drumpad : drumpads) {
-    //     // drumpad.soundSet = sounds.soundCategoryMap["defualt_map"];
-    //     // drumpad.soundIndex = soundCounter;
-    //     soundCounter++;
-    //     // std::cout << drumpad.soundSet->sounds[drumpad.soundIndex]->name << std::endl;
-    // }
+void InputManager::setupDrumPadSounds(std::vector<SoundSet>& soundSets) {
+    for (SoundSet& soundSet : soundSets) {
+        std::cout << soundSet.getName() << std::endl;
+    }
 };

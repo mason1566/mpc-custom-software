@@ -10,7 +10,7 @@
 
 class SoundLibrary {
 public:    
-    SoundLibrary(std::function<void()> setupDoneCallback);
+    SoundLibrary(std::function<void(std::vector<SoundSet>&)> setupDoneCallback);
 
     SoundSet& getSoundSet(int index);
 protected:

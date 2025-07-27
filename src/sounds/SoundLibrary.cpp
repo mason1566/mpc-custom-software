@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-SoundLibrary::SoundLibrary(std::function<void()> setupDoneCallback) {
+SoundLibrary::SoundLibrary(std::function<void(std::vector<SoundSet>&)> setupDoneCallback) {
     // for (const auto& entry : std::filesystem::directory_iterator(""))
     // std::cout << std::filesystem::current_path().string() << std::endl;
     // Current path is /Users/masonjohnson/Projects/Cpp/MPC/build
@@ -38,7 +38,11 @@ SoundLibrary::SoundLibrary(std::function<void()> setupDoneCallback) {
             std::swap(soundSets[0], soundSets.back()); // Use swap to safely swap in a vector
         }
     }
-    setupDoneCallback();
+    // Log each file in default_library to console
+    // for (int i = 0; i < soundSets[0].size(); i++) {
+    //     std::cout << soundSets[0].getSoundFile(i).getFileName() << std::endl;
+    // }
+    setupDoneCallback(soundSets);
 };
 
 SoundSet& SoundLibrary::getSoundSet(int index) {

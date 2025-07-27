@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "DrumPad.h"
 #include "InputEvent.h"
+#include "../sounds/SoundSet.h"
 
 #include <libremidi/libremidi.hpp>
 #include <unordered_map>
@@ -37,7 +38,7 @@ public:
     InputManager();
     void setupDrumPads();
     void setupButtons();
-    void setupDrumPadSounds();
+    void setupDrumPadSounds(std::vector<SoundSet>& soundSets);
 protected:    
 
     std::function<void (const InputEvent&)> inputCallback = 0;

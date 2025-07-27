@@ -2,14 +2,15 @@
 #define AUDIO_CONTROLLER
 
 #include "miniaudio.h"
-#include "../input/DrumPad.h"
 #include "../sounds/SoundFile.h"
+
+#include <string>
 
 class AudioController {
 public:
     void MakeSound();
-    void MakeSound(DrumPad& drumpad);
-    void PlaySound(SoundFile& sound);
+    void MakeSound(SoundFile* sound);
+    void PlaySound(std::string soundPath);
 
     static AudioController& instance();
 protected:

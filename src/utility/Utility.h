@@ -51,6 +51,8 @@ namespace MPC_CONSTANTS {
         static const int JOG_WHEEL = 111;
         static const int MODE = 114;
         static const int COPY = 122;
+        static const int KNOB = 100;
+        static const int KNOB_BUTTON = 111;
     }
 }
 
@@ -80,7 +82,9 @@ enum class InputType {
 
 enum class InputSignal {
     DRUMPAD_DOWN, DRUMPAD_HOLD, DRUMPAD_UP,
-    BUTTON_DOWN, BUTTON_UP
+    BUTTON_DOWN, BUTTON_UP, 
+    KNOB_TURN_CLOCKWISE, KNOB_TURN_COUNTER_CLOCKWISE,
+    ERROR
 };
 
 // namespace MPC_STATES {

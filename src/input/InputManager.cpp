@@ -1,6 +1,6 @@
 #include "InputManager.h"
 
-#include <iostream>
+// #include <iostream>
 
 InputManager::InputManager() {   
     setupDrumPads();
@@ -50,10 +50,21 @@ void InputManager::handleMidiMessage(const libremidi::message& message) {
             inputType = InputType::BUTTON_INPUT;
             inputSignal = InputSignal::BUTTON_UP;
             break;
+        case MIDI_INPUT_SIGNALS::KNOB_TURN:
+            // std::cout << "KNOB INPUT!\n";
+            inputType = InputType::BUTTON_INPUT;
+            if (midiValue == MPC_CONSTANTS::BUTTON_MIDI_VALUES::KNOB && velocity == MIDI_INPUT_SIGNALS::KNOB_TURN_CLOCKWISE_VELOCITY)
+                inputSignal = InputSignal::KNOB_TURN_CLOCKWISE;
+            else if (midiValue == MPC_CONSTANTS::BUTTON_MIDI_VALUES::KNOB && velocity == MIDI_INPUT_SIGNALS::KNOB_TURN_COUNTER_CLOCKWISE_VELOCITY)
+                inputSignal = InputSignal::KNOB_TURN_COUNTER_CLOCKWISE;
+            else
+                inputSignal = InputSignal::ERROR;
+            break;
     
     // UNRECOGNIZED INPUT
         default:
             recognizedInput = false;
+            break;
     }
 
     // If the input is recognized, delegate the input event information to the State Manager.
@@ -130,6 +141,8 @@ void InputManager::setupButtons() {
     buttons.push_back(Button { MPC_CONSTANTS::BUTTON_MIDI_VALUES::JOG_WHEEL });
     buttons.push_back(Button { MPC_CONSTANTS::BUTTON_MIDI_VALUES::MODE });
     buttons.push_back(Button { MPC_CONSTANTS::BUTTON_MIDI_VALUES::COPY });
+    buttons.push_back(Button { MPC_CONSTANTS::BUTTON_MIDI_VALUES::KNOB });
+    buttons.push_back(Button { MPC_CONSTANTS::BUTTON_MIDI_VALUES::KNOB_BUTTON });
 
     // Add drumpads to input_map and drum_map
     for (int i = 0; i < buttons.size(); i++) {

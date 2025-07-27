@@ -21,9 +21,11 @@ AudioController::~AudioController() {
     ma_engine_uninit(&engine);
 }
 
-void AudioController::MakeSound(DrumPad& drumpad) {
-    if (drumpad.sound) {
-        PlaySound(drumpad.sound->getSound());
+void AudioController::MakeSound(SoundFile* sound) {
+    if (sound) {
+        // std::cout << "Signal DRUMPAD_DOWN from Pad: " << drumpad.padNumber << std::endl;
+        // std::cout << sound << std::endl;
+        PlaySound(sound->getPath().string().c_str());
     }
     else {
         MakeSound();
@@ -35,9 +37,9 @@ void AudioController::MakeSound() {
     ma_engine_play_sound(&engine, "../src/sounds/Blood Snare.wav", NULL);
 };
 
-void AudioController::PlaySound(SoundFile& sound) {
+void AudioController::PlaySound(std::string soundPath) {
     // std::cout << sound->name << std::endl;
     // std::cout << "Playing Sound!\n";
-    ma_engine_play_sound(&engine, sound.getPath().string().c_str(), NULL);
+    ma_engine_play_sound(&engine, soundPath.c_str(), NULL);
 }
 

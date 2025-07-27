@@ -11,9 +11,10 @@ add_executable(${PROJECT_NAME}
     src/audio/miniaudio.c 
     src/audio/AudioController.cpp 
 
-    src/sounds/Sound.cpp
+    src/sounds/SoundFile.cpp
     src/sounds/SoundSet.cpp
     src/sounds/SoundLibrary.cpp
+    src/sounds/DrumPadSound.cpp
 
     # INPUT
     src/input/InputManager.cpp

@@ -2,12 +2,11 @@
 #define AUDIO_CONTROLLER
 
 #include "miniaudio.h"
-#include "../sounds/Sound.h"
 
 class AudioController {
 public:
     void MakeSound();
-    void PlaySound(Sound& sound);
+    // void PlaySound(Sound* sound);
 
     static AudioController& instance();
 protected:

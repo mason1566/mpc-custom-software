@@ -25,7 +25,7 @@ void AudioController::MakeSound() {
     ma_engine_play_sound(&engine, "../src/sounds/Blood Snare.wav", NULL);
 };
 
-void AudioController::PlaySound(Sound& sound) {
-    // std::cout << sound.name << std::endl;
-    ma_engine_play_sound(&engine, sound.path.string().c_str(), NULL);
-}
+// void AudioController::PlaySound(Sound* sound) {
+//     // std::cout << sound->name << std::endl;
+//     // ma_engine_play_sound(&engine, sound.path.string().c_str(), NULL);
+// }

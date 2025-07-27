@@ -5,7 +5,6 @@
 #include "Button.h"
 #include "DrumPad.h"
 #include "InputEvent.h"
-#include "../sounds/SoundLibrary.h"
 
 #include <libremidi/libremidi.hpp>
 #include <unordered_map>
@@ -35,11 +34,11 @@ public:
     int getDrumPadNumber(int midiNote);
     void setInputEventCallback(std::function<void (const InputEvent&)> inputCallbackFunc) { inputCallback = inputCallbackFunc; }
 
-    InputManager(SoundLibrary& sounds);
+    InputManager();
     void setupDrumPads();
     void setupButtons();
+    void setupDrumPadSounds();
 protected:    
-    SoundLibrary& sounds;
 
     std::function<void (const InputEvent&)> inputCallback = 0;
 };

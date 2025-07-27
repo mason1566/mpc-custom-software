@@ -11,11 +11,11 @@ MPC* MPC::Instance() {
 
 /* CONSTRUCTOR */
 MPC::MPC() 
-  : soundLibrary(),
+  : soundLibrary([&]() { inputManager.setupDrumPadSounds(); }),
     midiSend(MidiSender::instance()), 
     midiReceive(MidiReceiver::instance()),
     audio(AudioController::instance()),
-    inputManager(soundLibrary),
+    inputManager(),
     stateManager(audio, midiSend, inputManager)
 {
     midiReceive.setMidiCallbackFunction([&](const libremidi::message& message) {
@@ -25,9 +25,6 @@ MPC::MPC()
     inputManager.setInputEventCallback([&](const InputEvent& inputEvent) {
         stateManager.handleEvent(inputEvent);
     });
-
-    inputManager.setupButtons();
-    inputManager.setupDrumPads();
 
     // std::cout << (*soundLibrary.sounds[0]).name << std::endl;
 

@@ -1,20 +1,23 @@
 #ifndef SOUND_SET
 #define SOUND_SET
 
-#include "Sound.h"
+#include "SoundFile.h"
 
 #include <vector>
 
 class SoundSet {
 public:
-    std::string name;
-    std::vector<Sound*> sounds;
-    bool isLocked = false;
-
     SoundSet(std::string name) : name(name) {} // Constructor
 
-    void addSound(Sound* sound) { sounds.push_back(sound); }
+    std::string getName() { return name; }
+    void setName(std::string name) { name = name; }
+    SoundFile getSoundFile(int index) const;
+    void addSoundFile(SoundFile sound) { soundFiles.push_back(sound); }
+    size_t size() { return soundFiles.size(); }
     // void removeSound(Sound* sound);
+protected:
+    std::vector<SoundFile> soundFiles;
+    std::string name;
 };
 
 #endif

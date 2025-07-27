@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-InputManager::InputManager(SoundLibrary& sounds) : sounds(sounds) {   
-    // setupDrumPads();
-    // setupButtons();
+InputManager::InputManager() {   
+    setupDrumPads();
+    setupButtons();
 }
 
 int InputManager::getDrumPadNumber(int midiNote) {
@@ -68,7 +68,7 @@ void InputManager::handleMidiMessage(const libremidi::message& message) {
 void InputManager::setupDrumPads() {
     // add drumpads to the vector
     for (int i = 0; i < MPC_CONSTANTS::DRUMPAD_COUNT; i++) {
-        drumpads.push_back( DrumPad { MPC_CONSTANTS::DRUMPAD_MIDI_VALUES[i], i, *sounds.sounds[i] } );
+        drumpads.push_back( DrumPad { MPC_CONSTANTS::DRUMPAD_MIDI_VALUES[i], i } );
     }
 
     // Set initial colour of drumpads
@@ -80,16 +80,6 @@ void InputManager::setupDrumPads() {
         drumpads[i].setLightColour(padColour);
         percent += step;
     }
-
-    // Set the initial sounds of pads
-    // for (DrumPad pad : drumpads) {
-    //     pad.sound = sounds.sounds[0];
-    // }
-    // for (int i = 0; i < drumpads.size(); i++) {
-    //     if (sounds.sounds[i])
-    //         drumpads[i].sound = sounds.sounds[i];
-    // }
-    // std::cout << sounds.sounds.size() << std::endl;
 
     // Add drumpads to input_map and drum_map
     for (int i = 0; i < drumpads.size(); i++) {
@@ -147,3 +137,13 @@ void InputManager::setupButtons() {
         input_map[buttons[i].midiValue] = &(buttons[i]);
     }
 }
+
+void InputManager::setupDrumPadSounds() {
+    // int soundCounter = 0;
+    // for (DrumPad drumpad : drumpads) {
+    //     // drumpad.soundSet = sounds.soundCategoryMap["defualt_map"];
+    //     // drumpad.soundIndex = soundCounter;
+    //     soundCounter++;
+    //     // std::cout << drumpad.soundSet->sounds[drumpad.soundIndex]->name << std::endl;
+    // }
+};

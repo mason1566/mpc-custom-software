@@ -28,8 +28,7 @@ StateAction DefaultState::handleDrumPadInput(const InputEvent& inputEvent) {
             activeDrumPad = drumpad;
             drumpad->setLightOn();
             midiSend.setPadRGB(drumpad->padNumber, drumpad->getLightColour() * inputEvent.velocity);
-            
-            audio.PlaySound(drumpad->sound);
+            // audio.PlaySound();
             break;
         }
         case InputSignal::DRUMPAD_HOLD:

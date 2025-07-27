@@ -5,17 +5,18 @@
 
 #include "../midi/MidiSender.h"
 #include "../input/InputManager.h"
+#include "StateManager.h"
 
 class CopyPasteRGBState : protected State {
 public:
     StateAction handleInput(const InputEvent& inputEvent) override;
-    CopyPasteRGBState(MidiSender& midiSend, InputManager& input) : midiSend(midiSend), input(input), State() {}
+    CopyPasteRGBState(MidiSender& midiSend, InputManager& input, StateManager& stateManager, DrumPad* copyPad);
 protected:
     MidiSender& midiSend;
     InputManager& input;
+    StateManager& stateManager;
 
-    DrumPad* drumpad1 = nullptr;
-    DrumPad* drumpad2 = nullptr;
+    DrumPad* copyPad = nullptr;
 
     StateAction handleDrumPadInput(const InputEvent& inputEvent) override;
     StateAction handleButtonInput(const InputEvent& inputEvent) override;

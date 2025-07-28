@@ -11,6 +11,11 @@ class TurnOnAllPadsState : protected State {
 public:
     StateAction handleInput(const InputEvent& inputEvent) override;
     TurnOnAllPadsState(MidiSender& midiSend, InputManager& input, StateManager& stateManager) : midiSend(midiSend), input(input), stateManager(stateManager), State() {}
+
+    virtual void onEnter() override;
+    virtual void onExit() override;
+    virtual void onPause() override {}
+    virtual void onResume() override {}
 protected:
     MidiSender& midiSend;
     InputManager& input;
@@ -18,8 +23,6 @@ protected:
 
     void turnOnAllDrumPads();
     void turnOffAllDrumPads();
-
-    bool lightsOn = false;
 
     StateAction handleDrumPadInput(const InputEvent& inputEvent) override;
     StateAction handleButtonInput(const InputEvent& inputEvent) override;

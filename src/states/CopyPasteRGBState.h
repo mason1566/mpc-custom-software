@@ -11,6 +11,11 @@ class CopyPasteRGBState : protected State {
 public:
     StateAction handleInput(const InputEvent& inputEvent) override;
     CopyPasteRGBState(MidiSender& midiSend, InputManager& input, StateManager& stateManager, DrumPad* copyPad);
+
+    virtual void onEnter() override {}
+    virtual void onExit() override {}
+    virtual void onPause() override {}
+    virtual void onResume() override {}
 protected:
     MidiSender& midiSend;
     InputManager& input;

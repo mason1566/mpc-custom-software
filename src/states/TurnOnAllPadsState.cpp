@@ -1,11 +1,6 @@
 #include "TurnOnAllPadsState.h"
 
 StateAction TurnOnAllPadsState::handleInput(const InputEvent& inputEvent) {
-    if (!lightsOn) {
-        turnOnAllDrumPads();
-        lightsOn = true;
-    }
-
     // Defer input events to their specific handler function
     if (inputEvent.inputType == InputType::DRUMPAD_INPUT) {
         return handleDrumPadInput(inputEvent);
@@ -17,6 +12,12 @@ StateAction TurnOnAllPadsState::handleInput(const InputEvent& inputEvent) {
 };
 
 StateAction TurnOnAllPadsState::handleDrumPadInput(const InputEvent& inputEvent) {
+    // if (inputEvent.inputSignal == InputSignal::DRUMPAD_DOWN || inputEvent.inputSignal == InputSignal::DRUMPAD_HOLD){
+    //     // return StateAction::Defer;
+    // } 
+    // else if (inputEvent.inputSignal == InputSignal::DRUMPAD_UP) {
+    //     midiSend.setPadRGB(input.drum_map[inputEvent.midiValue]->padNumber, input.drum_map[inputEvent.midiValue]->getLightColour());
+    // }
     return StateAction::None;
 };
 
@@ -33,10 +34,10 @@ StateAction TurnOnAllPadsState::handleButtonInput(const InputEvent& inputEvent) 
     
     if (inputEvent.inputSignal == InputSignal::BUTTON_UP) {
         if (inputEvent.midiValue == MPC_CONSTANTS::BUTTON_MIDI_VALUES::FULL_LEVEL) {
-            turnOffAllDrumPads();
             return StateAction::Pop;
         }
     }
+    return StateAction::None;
 };
 
 void TurnOnAllPadsState::turnOffAllDrumPads() {
@@ -52,3 +53,11 @@ void TurnOnAllPadsState::turnOnAllDrumPads() {
         midiSend.setPadRGB(drumpad.padNumber, drumpad.getLightColour());
     }
 };
+
+void TurnOnAllPadsState::onEnter() {
+    turnOnAllDrumPads();
+}
+
+void TurnOnAllPadsState::onExit() {
+    turnOffAllDrumPads();
+}

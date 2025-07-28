@@ -87,6 +87,7 @@ StateAction DefaultState::handleButtonInput(const InputEvent& inputEvent) {
                 if (activeDrumPad) {
                     State* copyPasteState = (State*) new CopyPasteRGBState(midiSend, input, stateManager, activeDrumPad);
                     stateManager.pushState(copyPasteState);
+                    return StateAction::Push;
                 }
                 break;
             }
@@ -94,7 +95,7 @@ StateAction DefaultState::handleButtonInput(const InputEvent& inputEvent) {
             {
                 State* turnOnPadsState = (State*) new TurnOnAllPadsState(midiSend, input, stateManager);
                 stateManager.pushState(turnOnPadsState);
-                turnOnPadsState->handleInput(inputEvent);
+                return StateAction::Push;
             }
             case MPC_CONSTANTS::BUTTON_MIDI_VALUES::MINUS:
             {
@@ -129,3 +130,7 @@ StateAction DefaultState::handleButtonInput(const InputEvent& inputEvent) {
 
     return StateAction::None;
 };
+
+void DefaultState::onPause() {
+    activeDrumPad = nullptr;
+}

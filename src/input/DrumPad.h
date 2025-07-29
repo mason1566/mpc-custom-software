@@ -13,14 +13,16 @@ public:
     bool isLightOn = true;
     int velocity = 0;
     std::unique_ptr<DrumPadSound> sound = nullptr;
-    RGB _lightColour;
 
     DrumPad(int midiValue, int padNum) : BaseInput(midiValue), padNumber(padNum), _lightColour(RGB::WHITE) {}
     void setLightColour(RGB colour) { _lightColour = colour; }
     RGB getLightColour();
+    RGB getLightColour(bool stateOverride) { if (stateOverride) return _lightColour; else return getLightColour(); }
     void toggleLight();
     void setLightOff() { isLightOn = false; }
     void setLightOn() { isLightOn = true; }
+private:
+    RGB _lightColour;
 };
 
 #endif

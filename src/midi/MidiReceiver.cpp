@@ -10,9 +10,7 @@ MidiReceiver& MidiReceiver::instance() {
 MidiReceiver::MidiReceiver() {
     // Create lambda expression callback function for midi message handling
     auto callback = [this](libremidi::message&& message) {
-        // std::cout << (int)message.bytes[0] << " " << (int)message.bytes[1] << " " << (int)message.bytes[2] << std::endl;
-        if (midiCallback)
-            midiCallback(message);
+        EventDispatcher::broadcastEvent<libremidi::message&>(MPCEvents::MIDI_INPUT, message); // Broadcast the event via the EventDispatcher
     };
 
     midi_in = std::make_unique<libremidi::midi_in>(

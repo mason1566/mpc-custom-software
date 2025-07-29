@@ -3,6 +3,9 @@
 
 #include "BaseMidi.h"
 #include "../utility/Utility.h"
+#include "../events/EventDispatcher.h"
+#include "../events/MPCEvents.h"
+
 #include <functional>
 
 // Singleton
@@ -12,14 +15,10 @@ class MidiReceiver : protected BaseMidi {
 public:
     std::unique_ptr<libremidi::midi_in> midi_in;
 
-    void setMidiCallbackFunction(std::function<void (const libremidi::message&)> midiCallbackFunc) { midiCallback = midiCallbackFunc; }
-
     // Singleton instance function
     static MidiReceiver& instance();
 private:
     MidiReceiver();
-
-    std::function<void (const libremidi::message&)> midiCallback = 0;
 };
 
 #endif

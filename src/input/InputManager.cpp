@@ -2,7 +2,10 @@
 
 // #include <iostream>
 
-InputManager::InputManager() {   
+InputManager::InputManager() {  
+    auto callback = [this](libremidi::message& message) { handleMidiMessage(message); };
+    EventDispatcher::addListener<libremidi::message&>(MPCEvents::MIDI_INPUT, callback);
+    
     setupDrumPads();
     setupButtons();
 }
@@ -67,10 +70,10 @@ void InputManager::handleMidiMessage(const libremidi::message& message) {
             break;
     }
 
-    // If the input is recognized, delegate the input event information to the State Manager.
-    if (recognizedInput && inputCallback) {
+    // If the input is recognized, delegate the input event information to the Event Dispatcher.
+    if (recognizedInput) {
         InputEvent inputEvent { signalCode, midiValue, velocity, inputType, inputSignal };
-        inputCallback(inputEvent); // Delegate responsibility to the stateManager object
+        EventDispatcher::broadcastEvent<InputEvent>(MPCEvents::INPUT_EVENT, inputEvent);
     }
 
 }

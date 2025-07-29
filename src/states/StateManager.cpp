@@ -2,6 +2,14 @@
 
 #include <iostream>
 
+
+
+StateManager::StateManager(AudioController& audio, MidiSender& midiSend, InputManager& input) : audio(audio), midiSend(midiSend), input(input), defaultState(midiSend, input, *this, audio), eventQueue() 
+{
+    auto callback = [this](InputEvent input) { handleEvent(input); };
+    EventDispatcher::addListener<InputEvent>(MPCEvents::INPUT_EVENT, callback);
+}
+
 void StateManager::handleEvent(const InputEvent& event) {
     // std::cout << "Hello from StateManager!\n";
 

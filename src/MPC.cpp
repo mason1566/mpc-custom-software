@@ -18,13 +18,13 @@ MPC::MPC()
     audio(AudioController::instance()),
     stateManager(audio, midiSend, inputManager)
 {
-    midiReceive.setMidiCallbackFunction([&](const libremidi::message& message) {
-        inputManager.handleMidiMessage(message);
-    });
+    // midiReceive.setMidiCallbackFunction([&](const libremidi::message& message) {
+    //     inputManager.handleMidiMessage(message);
+    // });
 
-    inputManager.setInputEventCallback([&](const InputEvent& inputEvent) {
-        stateManager.handleEvent(inputEvent);
-    });
+    // inputManager.setInputEventCallback([&](const InputEvent& inputEvent) {
+    //     stateManager.handleEvent(inputEvent);
+    // });
 
     // std::cout << (*soundLibrary.sounds[0]).name << std::endl;
 

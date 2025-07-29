@@ -1,5 +1,5 @@
-#ifndef INPUT_EVENT
-#define INPUT_EVENT
+#ifndef MPC_INPUT_EVENT
+#define MPC_INPUT_EVENT
 
 #include "../utility/Utility.h"
 

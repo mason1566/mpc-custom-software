@@ -6,6 +6,8 @@
 #include "DrumPad.h"
 #include "InputEvent.h"
 #include "../sounds/SoundSet.h"
+#include "../events/EventDispatcher.h"
+#include "../events/MPCEvents.h"
 
 #include <libremidi/libremidi.hpp>
 #include <unordered_map>
@@ -33,7 +35,6 @@ public:
     // Member Functions
     void handleMidiMessage(const libremidi::message& message);
     int getDrumPadNumber(int midiNote);
-    void setInputEventCallback(std::function<void (const InputEvent&)> inputCallbackFunc) { inputCallback = inputCallbackFunc; }
 
     InputManager();
     void setupDrumPads();
@@ -41,7 +42,6 @@ public:
     void setupDrumPadSounds(std::vector<SoundSet>& soundSets);
 protected:    
 
-    std::function<void (const InputEvent&)> inputCallback = 0;
 };
 
 #endif

@@ -38,6 +38,10 @@ add_executable(${PROJECT_NAME}
     src/states/DefaultState.cpp
     src/states/CopyPasteRGBState.cpp
     src/states/TurnOnAllPadsState.cpp
+
+    # EVENTS
+    src/events/EventDispatcher.cpp
+    src/events/MPCEvents.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE libremidi)

@@ -29,7 +29,7 @@ StateAction CopyPasteRGBState::handleDrumPadInput(const InputEvent& inputEvent) 
     if (inputEvent.inputSignal == InputSignal::DRUMPAD_DOWN) {
         if (copyPad != drumpad) {
             // Turn on pastePad
-            drumpad->setLightColour(copyPad->_lightColour);
+            drumpad->setLightColour(copyPad->getLightColour(true));
             drumpad->setLightOn();
             midiSend.setPadRGB(drumpad->padNumber, drumpad->getLightColour());
             
